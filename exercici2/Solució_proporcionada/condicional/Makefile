@@ -1,7 +1,7 @@
 
 TARGET=calculadora_registres
 
-CFLAGS = -Wall -lc -ly -ll
+CFLAGS = -Wall
 
 include ./tutorial.mk
 

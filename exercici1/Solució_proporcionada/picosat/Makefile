@@ -1,7 +1,7 @@
 
 TARGET=picosat
 
-CFLAGS = -Wall -lc -ly -ll
+CFLAGS = -Wall
 
 include ./tutorial.mk
 

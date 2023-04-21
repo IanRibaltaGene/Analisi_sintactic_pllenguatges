@@ -1,0 +1,238 @@
+Grammar
+
+    0 $accept: programa $end
+
+    1 programa: ε
+    2         | capcalera ll_clausules
+
+    3 ll_clausules: clausula
+    4             | ll_clausules clausula
+
+    5 capcalera: P CNF INT INT
+
+    6 clausula: ll_literals FINAL
+    7         | error FINAL
+
+    8 ll_literals: literal
+    9            | ll_literals literal
+
+   10 literal: variable
+   11        | NEG variable
+
+   12 variable: INT
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256) 7
+    P (258) 5
+    CNF (259) 5
+    NEG (260) 11
+    FINAL (261) 6 7
+    INT <valor> (262) 5 12
+
+
+Nonterminals, with rules where they appear
+
+    $accept (8)
+        on left: 0
+    programa <sense> (9)
+        on left: 1 2
+        on right: 0
+    ll_clausules <sense> (10)
+        on left: 3 4
+        on right: 2 4
+    capcalera <sense> (11)
+        on left: 5
+        on right: 2
+    clausula <sense> (12)
+        on left: 6 7
+        on right: 3 4
+    ll_literals <sense> (13)
+        on left: 8 9
+        on right: 6 9
+    literal <sense> (14)
+        on left: 10 11
+        on right: 8 9
+    variable <sense> (15)
+        on left: 12
+        on right: 10 11
+
+
+State 0
+
+    0 $accept: • programa $end
+
+    P  shift, and go to state 1
+
+    $default  reduce using rule 1 (programa)
+
+    programa   go to state 2
+    capcalera  go to state 3
+
+
+State 1
+
+    5 capcalera: P • CNF INT INT
+
+    CNF  shift, and go to state 4
+
+
+State 2
+
+    0 $accept: programa • $end
+
+    $end  shift, and go to state 5
+
+
+State 3
+
+    2 programa: capcalera • ll_clausules
+
+    error  shift, and go to state 6
+    NEG    shift, and go to state 7
+    INT    shift, and go to state 8
+
+    ll_clausules  go to state 9
+    clausula      go to state 10
+    ll_literals   go to state 11
+    literal       go to state 12
+    variable      go to state 13
+
+
+State 4
+
+    5 capcalera: P CNF • INT INT
+
+    INT  shift, and go to state 14
+
+
+State 5
+
+    0 $accept: programa $end •
+
+    $default  accept
+
+
+State 6
+
+    7 clausula: error • FINAL
+
+    FINAL  shift, and go to state 15
+
+
+State 7
+
+   11 literal: NEG • variable
+
+    INT  shift, and go to state 8
+
+    variable  go to state 16
+
+
+State 8
+
+   12 variable: INT •
+
+    $default  reduce using rule 12 (variable)
+
+
+State 9
+
+    2 programa: capcalera ll_clausules •
+    4 ll_clausules: ll_clausules • clausula
+
+    error  shift, and go to state 6
+    NEG    shift, and go to state 7
+    INT    shift, and go to state 8
+
+    $end  reduce using rule 2 (programa)
+
+    clausula     go to state 17
+    ll_literals  go to state 11
+    literal      go to state 12
+    variable     go to state 13
+
+
+State 10
+
+    3 ll_clausules: clausula •
+
+    $default  reduce using rule 3 (ll_clausules)
+
+
+State 11
+
+    6 clausula: ll_literals • FINAL
+    9 ll_literals: ll_literals • literal
+
+    NEG    shift, and go to state 7
+    FINAL  shift, and go to state 18
+    INT    shift, and go to state 8
+
+    literal   go to state 19
+    variable  go to state 13
+
+
+State 12
+
+    8 ll_literals: literal •
+
+    $default  reduce using rule 8 (ll_literals)
+
+
+State 13
+
+   10 literal: variable •
+
+    $default  reduce using rule 10 (literal)
+
+
+State 14
+
+    5 capcalera: P CNF INT • INT
+
+    INT  shift, and go to state 20
+
+
+State 15
+
+    7 clausula: error FINAL •
+
+    $default  reduce using rule 7 (clausula)
+
+
+State 16
+
+   11 literal: NEG variable •
+
+    $default  reduce using rule 11 (literal)
+
+
+State 17
+
+    4 ll_clausules: ll_clausules clausula •
+
+    $default  reduce using rule 4 (ll_clausules)
+
+
+State 18
+
+    6 clausula: ll_literals FINAL •
+
+    $default  reduce using rule 6 (clausula)
+
+
+State 19
+
+    9 ll_literals: ll_literals literal •
+
+    $default  reduce using rule 9 (ll_literals)
+
+
+State 20
+
+    5 capcalera: P CNF INT INT •
+
+    $default  reduce using rule 5 (capcalera)

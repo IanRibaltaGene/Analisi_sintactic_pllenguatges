@@ -2,7 +2,7 @@ $(TARGET) : $(TARGET).tab.c  lex.yy.c
 	g++ $(CFLAGS) $(TARGET).tab.c lex.yy.c -o $(TARGET)
 
 $(TARGET).tab.c: $(TARGET).y
-	yacc -d -v $(TARGET).y -o $(TARGET).tab.c
+	bison -d -v $(TARGET).y -o $(TARGET).tab.c
 
 lex.yy.c : $(TARGET).l
 	flex $(TARGET).l
