@@ -1,0 +1,12 @@
+c Exemple CNF DIMACS: mini-sudoku de 2 x 2
+c CNF amb 4 variables i 6 clausules
+c Final de clausula: 0
+c ERROR num. clausules
+p cnf 4 10
+1 2 0
+-1 -2 0
+3 4 0
+-3 -4 0
+-1 -3 0
+-2 -4 0
+

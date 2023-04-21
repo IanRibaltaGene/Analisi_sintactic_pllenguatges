@@ -1,0 +1,29 @@
+// Assignació de valors
+a = 2;
+b = -3;
+
+// Expressió condicional
+(a * -b -2 >= 0 && b < 0) ?  c = a+b :     c = b;
+
+// Mostrem c
+c;
+
+ // Avaluació d'expressions aritmètiques
+a-b;
+c*2;
+
+// Expressió condicional
+(c %2 == 0 && a - b < 0) ?
+     d = 1  :
+     d = -1;
+
+// Mostrem d
+c;
+
+// Expressió condicional
+(5 > 0 ) ?
+    p = 5  :
+    p = -5;
+
+// Mostrem p
+p;

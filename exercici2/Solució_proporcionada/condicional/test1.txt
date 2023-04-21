@@ -1,0 +1,15 @@
+
+
+// Assignació de valors
+a = 2;
+b = -3;
+
+// Expressió condicional
+(a >= 0) ?    a :   b;
+
+// Expressió condicional
+(a < 0 ) ?  c = a+b :     c = b;
+
+// Mostrem c
+c;
+
