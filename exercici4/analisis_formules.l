@@ -58,5 +58,6 @@ constant [a-c][1-9]
 \)                      { return yytext[0];    } /* match parentesis dreta */
 {separador}				{ return yytext[0];    } /* match separator */
 
-\n                      { line_number++; } /* match newline, incrementa line_number */
+\n                      { line_number++;
+						return FIN; } /* match newline, incrementa line_number i retorna separador de clausules */
 .                       

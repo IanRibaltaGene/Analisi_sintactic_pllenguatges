@@ -29,5 +29,6 @@
 \|\|                    { return DISJ;   } /* match disj */
 "->"                    { return IMP;    } /* match imp */
 "<->"                   { return DIMP;   } /* match doble imp */
-\n                      { nlin++; } /* match newline, incrementa line_number */
+\n                      { nlin++; 
+						return FIN; } /* match newline, incrementa nlin i retorna final de clausula */
 .                       { return yytext[0]; } /* match qualsevol altre caracter */
