@@ -30,6 +30,6 @@
 "||"                    { return OR;   } /* match disj */
 "->"                    { return IMPL;    } /* match imp */
 "<->"                   { return DUBL;   } /* match doble imp */
-\n                      { nlin++; 
+\n                      { nlin++;
 						return FIN; } /* match newline, incrementa nlin i retorna final de clausula */
 .                       { return yytext[0]; } /* match qualsevol altre caracter */

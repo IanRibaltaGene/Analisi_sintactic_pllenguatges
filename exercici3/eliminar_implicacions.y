@@ -8,6 +8,8 @@
     #include <string.h>
     #include <ctype.h>
 
+    #define NUL 0
+
     extern int nlin;
     extern int yylex();
     extern FILE * yyin;
@@ -35,7 +37,8 @@
 %type <str> formula clause expr
 
 %%
-formula : clause FIN            { printf("Formula without implications and iff: %s\n", $1); }
+formula : clause FIN            { printf("Formula without implications and iff: %s\n", $1);
+                                $$ = NUL; }
         | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
                                 yyerrok; }
         ;
@@ -53,25 +56,25 @@ clause  : expr                  { strcpy($$, $1); }
                                  strcat($$, $3);}
         | clause DUBL expr      { strcpy($$, "(!");
                                  strcat($$, $1);
-                                 strcat($$, ") ");
-                                 strcat($$, " || ");
+                                 strcat($$, ")");
+                                 strcat($$, "|| ");
                                  strcat($$, $3);
                                  strcat($$, " && ");
                                  strcat($$, "(!");
                                  strcat($$, $3);
                                  strcat($$, " || ");
                                  strcat($$,$1);
-                                 strcat($$, ") ");}
+                                 strcat($$, ")");}
         ;
 
 expr    : VAR                   { c = $1+'A';
                                 strcpy($$, &c); }
-        | NEG expr %prec NEG    { strcpy($$,"!( ");
+        | NEG expr %prec NEG    { strcpy($$,"!(");
                                 strcat($$,$2);
-                                strcat($$,") "); }
+                                strcat($$,")"); }
         | '(' clause ')'        { strcpy($$, "(");
                                 strcat($$,$2);
-                                strcat($$,") "); }
+                                strcat($$,")"); }
         ;
 
 %%
