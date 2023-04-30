@@ -50,32 +50,38 @@ formula : FIN                   {$$ = NUL;}
         ;
 
 clause  : expr                  { strcpy($$, $1); }
-        | clause AND expr       { strcpy($$, $1);
-                                 strcat($$, " && ");
-                                 strcat($$, $3);}
-        | clause OR expr        { strcpy($$, $1); 
-                                 strcat($$, " || ");
-                                 strcat($$, $3);}
+        | clause AND expr       { strcpy($$, "(");
+                                 strcat($$, $1);
+                                 strcat($$, " ^ ");
+                                 strcat($$, $3);
+                                 strcat($$, ")");}
+        | clause OR expr        {strcpy($$, "("); 
+                                 strcat($$, $1); 
+                                 strcat($$, " v ");
+                                 strcat($$, $3);
+                                 strcat($$, ")");}
         | clause IMPL expr      { strcpy($$, "!");
                                  strcat($$, $1);
-                                 strcat($$, " || ");
+                                 strcat($$, " v ");
                                  strcat($$, $3);}
         | clause DUBL expr      { strcpy($$, "(!");
                                  strcat($$, $1);
                                  strcat($$, ")");
-                                 strcat($$, " || ");
+                                 strcat($$, " v ");
                                  strcat($$, $3);
-                                 strcat($$, " && ");
+                                 strcat($$, " ^ ");
                                  strcat($$, "(!");
                                  strcat($$, $3);
-                                 strcat($$, " || ");
+                                 strcat($$, " v ");
                                  strcat($$,$1);
                                  strcat($$, ")");}
         ;
 
 expr    : VAR                   { c = $1+'A';
-                                strcpy($$, &c); }
-        | NEG expr %prec NEG    { strcpy($$,"!(");
+                                strcpy($$, "(");
+                                strcat($$, &c);
+                                strcat($$, ")");}
+        | NEG expr %prec NEG    { strcpy($$,"(!");
                                 strcat($$,$2);
                                 strcat($$,")"); }
         | '(' clause ')'        { strcpy($$, "(");
