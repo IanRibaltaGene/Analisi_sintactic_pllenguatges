@@ -33,8 +33,8 @@
 %type <str> formula clause expr
 
 %%
-formula : clause FIN            { printf("Formula without implications and iff: %d\n", $1); }
-        | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
+formula : clause FIN            { printf("Formula without implications and iff: %s\n", $1); }
+        | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %s \n", nlin);
                                 yyerrok; }
         ;
 
@@ -50,22 +50,22 @@ clause  : expr                  { strcpy($$, $1); }
                                  strcat($$, " || ");
                                  strcat($$, $3);}
         | clause DUBL expr      { strcpy($$, "(!");
-                                 strcat($1);
-                                 strcat(") ");
-                                 strcat(" || ");
-                                 strcat($3);
-                                 strcat(" && ");
-                                 strcat("(!");
-                                 strcat($3);
-                                 strcat(" || ");
-                                 strcat($1);
-                                 strcat(") ");}
+                                 strcat($$, $1);
+                                 strcat($$, ") ");
+                                 strcat($$, " || ");
+                                 strcat($$, $3);
+                                 strcat($$, " && ");
+                                 strcat($$, "(!");
+                                 strcat($$, $3);
+                                 strcat($$, " || ");
+                                 strcat($$,$1);
+                                 strcat($$, ") ");}
         ;
 
-expr    : VAR                   { $$ = $1; } // Potser retornar 'A' + $1 i llavors fer un cast a char
+expr    : VAR                   { $$ = $1; }
         | NEG expr %prec NEG    { strcpy($$,"!( ");
-                                strcat($2);
-                                strcat(") "); }
+                                strcat($$,$2);
+                                strcat($$,") "); }
         | '(' clause ')'        { strcpy($$, "(");
                                 strcat($$,$2);
                                 strcat($$,") "); }
