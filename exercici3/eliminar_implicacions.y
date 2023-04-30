@@ -8,7 +8,6 @@
     #include <string.h>
     #include <ctype.h>
 
-    #define NUL 0
 
     extern int nlin;
     extern int yylex();
@@ -38,7 +37,7 @@
 
 %%
 formula : clause FIN            { printf("Formula without implications and iff: %s\n", $1);
-                                strcpy($$, NUL); }
+                                $$ = $1; }
         | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
                                 yyerrok; }
         ;
