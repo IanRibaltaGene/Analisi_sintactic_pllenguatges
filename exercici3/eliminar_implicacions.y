@@ -62,7 +62,7 @@ clause  : expr                  { strcpy($$, $1); }
                                  strcat($$, ") ");}
         ;
 
-expr    : VAR                   {strcpy($$, (char*) ($1+'A')); }
+expr    : VAR                   {strcpy($$, ($1+'A')); }
         | NEG expr %prec NEG    { strcpy($$,"!( ");
                                 strcat($$,$2);
                                 strcat($$,") "); }
