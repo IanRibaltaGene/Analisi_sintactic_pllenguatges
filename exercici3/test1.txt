@@ -10,4 +10,4 @@ A < - > B
 #Test 3
 A v B -> C
 A v B -> c
-AvB->C
+Av(B->C)
