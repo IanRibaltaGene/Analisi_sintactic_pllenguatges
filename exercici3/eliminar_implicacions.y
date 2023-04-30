@@ -36,7 +36,7 @@
 %type <str> formula clause expr
 
 %%
-formula : FIN
+formula : FIN                   {$$ = $1;}
         | clause FIN            { printf("Formula without implications and iff: %s\n", $1);
                                 strcpy($$, $1); }
         | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
