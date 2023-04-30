@@ -14,6 +14,8 @@
 
     void yyerror(const char *s);
 
+    char c;
+
 %}
 
 %start formula
@@ -62,7 +64,8 @@ clause  : expr                  { strcpy($$, $1); }
                                  strcat($$, ") ");}
         ;
 
-expr    : VAR                   {strcpy($$, ($1+'A')); }
+expr    : VAR                   { c = $1+'A';
+                                strcpy($$, c); }
         | NEG expr %prec NEG    { strcpy($$,"!( ");
                                 strcat($$,$2);
                                 strcat($$,") "); }
