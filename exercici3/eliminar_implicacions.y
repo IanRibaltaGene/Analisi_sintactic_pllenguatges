@@ -19,7 +19,7 @@
 
 %}
 
-%start formula
+%start starter
 
 %union {
     char str[1000];
@@ -36,6 +36,9 @@
 %type <str> formula clause expr
 
 %%
+starter: formula
+        ;
+
 formula : clause FIN            { printf("Formula without implications and iff: %s\n", $1);
                                 strcpy($$, $1); }
         | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
