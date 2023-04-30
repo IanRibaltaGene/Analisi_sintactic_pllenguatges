@@ -38,7 +38,7 @@
 
 %%
 formula : clause FIN            { printf("Formula without implications and iff: %s\n", $1);
-                                $$ = NUL; }
+                                strcpy($$, NUL); }
         | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
                                 yyerrok; }
         ;
