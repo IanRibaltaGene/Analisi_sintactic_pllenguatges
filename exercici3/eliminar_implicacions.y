@@ -20,7 +20,7 @@
 
 %}
 
-%start formula
+%start starter
 
 %union {
     char str[1000];
