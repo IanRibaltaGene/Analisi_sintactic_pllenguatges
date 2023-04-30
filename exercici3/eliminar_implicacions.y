@@ -14,7 +14,7 @@
 
     void yyerror(const char *s);
 
-    char c;
+    char * restrict c;
 
 %}
 
