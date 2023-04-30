@@ -8,33 +8,29 @@
     #include <string.h>
     #include <ctype.h>
 
-    void yyerror(const char *s);
-    int yylex();
-    void elimina_implicacions();
+    extern int nlin;
+    extern int yylex();
+    extern FILE * yyin;
 
-    typedef struct {
-        char* name;
-        int value;
-    } Var;
-
-    Var vars[100];
-    int num_vars = 0;
+    void yyerror(char const *s);
 
 %}
 
 %start formula
 
 %union {
-    int value;
+    char str[100];
+    char var;
 }
 
-%token VAR FIN
+%token <var> VAR
+%token FIN
 %left IMPL DUBL /* implication and iff */
 %left OR /* disjunction */
 %left AND /* conjunction*/
 %right NEG /* negation*/
 
-%type <value> formula clause expr
+%type <str> formula clause expr
 
 %%
 formula : clause FIN            { printf("Formula without implications and iff: %d\n", $1); }
@@ -42,16 +38,37 @@ formula : clause FIN            { printf("Formula without implications and iff: 
                                 yyerrok; }
         ;
 
-clause  : expr                  { $$ = $1; }
-        | clause AND expr       { $$ = $1 && $3; }
-        | clause OR expr        { $$ = $1 || $3; }
-        | clause IMPL expr      { $$ = !$1 || $3; }
-        | clause DUBL expr      { $$ = (!$1 || $3) && (!$3 || $1); }
+clause  : expr                  { strcpy($$, $1); }
+        | clause AND expr       { strcpy($$, $1);
+                                 strcat($$, " && ");
+                                 strcat($$, $3);}
+        | clause OR expr        { strcpy($$, $1); 
+                                 strcat($$, " || ");
+                                 strcat($$, $3);}
+        | clause IMPL expr      { strcpy($$, "!");
+                                 strcat($$, $1);
+                                 strcat($$, " || ");
+                                 strcat($$, $3);}
+        | clause DUBL expr      { strcpy($$, "(!");
+                                 strcat($1);
+                                 strcat(") ");
+                                 strcat(" || ");
+                                 strcat($3);
+                                 strcat(" && ");
+                                 strcat("(!");
+                                 strcat($3);
+                                 strcat(" || ");
+                                 strcat($1);
+                                 strcat(") ");}
         ;
 
-expr    : VAR                   { $$ = get_var($1); }
-        | NEG expr %prec NEG    { $$ = !($2); }
-        | '(' clause ')'        { $$ = $2; }
+expr    : VAR                   { $$ = $1; } // Potser retornar 'A' + $1 i llavors fer un cast a char
+        | NEG expr %prec NEG    { strcpy($$,"!( ");
+                                strcat($2);
+                                strcat(") "); }
+        | '(' clause ')'        { strcpy($$, "(");
+                                strcat($$,$2);
+                                strcat($$,") "); }
         ;
 
 %%
@@ -80,15 +97,4 @@ int main(int argc, char **argv) {
     fclose(input);
 
     return 0;
-}
-
-int get_var(char* name) {
-        for (int i = 0; i < num_vars; i++) {
-            if (strcmp(vars[i].name, name) == 0) {
-                return vars[i].value;
-            }
-        }
-
-        yyerror("Undefined variable");
-        return 0;
 }

@@ -23,7 +23,7 @@
 			    BEGIN 0; }
 <COMMENT>. ;
 
-[A-Z]                   { yylval=strdup(yytext); 
+[A-Z]                   { yylval.var=strdup(yytext);
 						return VAR;    } /* match variable */
 \!                      { return NEG;    } /* match negat */
 \&\&                    { return CONJ;   } /* match conj */
