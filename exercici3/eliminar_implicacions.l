@@ -25,9 +25,9 @@
 
 [A-Z]                   { yylval.var= yytext[0]-'A';
 						return VAR;    } /* match variable */
-\!                      { return NEG;    } /* match negat */
-\&\&                    { return AND;   } /* match conj */
-\|\|                    { return OR;   } /* match disj */
+"!"                     { return NEG;    } /* match negat */
+"&&"                    { return AND;   } /* match conj */
+"||"                    { return OR;   } /* match disj */
 "->"                    { return IMPL;    } /* match imp */
 "<->"                   { return DUBL;   } /* match doble imp */
 \n                      { nlin++; 

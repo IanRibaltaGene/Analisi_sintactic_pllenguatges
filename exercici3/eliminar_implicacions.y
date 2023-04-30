@@ -36,7 +36,7 @@
 
 %%
 formula : clause FIN            { printf("Formula without implications and iff: %s\n", $1); }
-        | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
+        | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA  %s \n", $1);
                                 yyerrok; }
         ;
 
