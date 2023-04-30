@@ -61,19 +61,31 @@ clause  : expr                  { strcpy($$, $1); }
                                  strcat($$, $3);
                                  strcat($$, ")");}
         | clause IMPL expr      { strcpy($$, "!");
-                                 strcat($$, $1);
-                                 strcat($$, " v ");
-                                 strcat($$, $3);}
-        | clause DUBL expr      { strcpy($$, "(!");
+                                 strcat($$, "(");
                                  strcat($$, $1);
                                  strcat($$, ")");
                                  strcat($$, " v ");
+                                 strcat($$, "(");
                                  strcat($$, $3);
-                                 strcat($$, " ^ ");
-                                 strcat($$, "(!");
-                                 strcat($$, $3);
+                                 strcat($$, ")");}
+        | clause DUBL expr      { strcpy($$, "(");
+                                 strcat($$, "!(");
+                                 strcat($$, $1);
+                                 strcat($$, ")");
                                  strcat($$, " v ");
+                                 strcat($$, "(");
+                                 strcat($$, $3);
+                                 strcat($$, ")");
+                                 strcat($$, ")");
+                                 strcat($$, " ^ ");
+                                 strcat($$, "(");
+                                 strcat($$, "!(");
+                                 strcat($$, $3);
+                                 strcat($$, ")");
+                                 strcat($$, " v ");
+                                 strcat($$, "(");
                                  strcat($$,$1);
+                                 strcat($$, ")")
                                  strcat($$, ")");}
         ;
 
