@@ -12,7 +12,7 @@
     extern int yylex();
     extern FILE * yyin;
 
-    void yyerror(char const *s);
+    void yyerror(const char *s);
 
 %}
 
@@ -34,7 +34,7 @@
 
 %%
 formula : clause FIN            { printf("Formula without implications and iff: %s\n", $1); }
-        | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %s \n", nlin);
+        | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
                                 yyerrok; }
         ;
 
@@ -62,7 +62,7 @@ clause  : expr                  { strcpy($$, $1); }
                                  strcat($$, ") ");}
         ;
 
-expr    : VAR                   { $$ = $1; }
+expr    : VAR                   { strcpy($$, $1); }
         | NEG expr %prec NEG    { strcpy($$,"!( ");
                                 strcat($$,$2);
                                 strcat($$,") "); }

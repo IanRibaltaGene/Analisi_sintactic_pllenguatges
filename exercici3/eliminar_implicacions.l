@@ -23,13 +23,13 @@
 			    BEGIN 0; }
 <COMMENT>. ;
 
-[A-Z]                   { yylval.var=strdup(yytext);
+[A-Z]                   { yylval.var= yytext[0];
 						return VAR;    } /* match variable */
 \!                      { return NEG;    } /* match negat */
-\&\&                    { return CONJ;   } /* match conj */
-\|\|                    { return DISJ;   } /* match disj */
-"->"                    { return IMP;    } /* match imp */
-"<->"                   { return DIMP;   } /* match doble imp */
+\&\&                    { return AND;   } /* match conj */
+\|\|                    { return OR;   } /* match disj */
+"->"                    { return IMPL;    } /* match imp */
+"<->"                   { return DUBL;   } /* match doble imp */
 \n                      { nlin++; 
 						return FIN; } /* match newline, incrementa nlin i retorna final de clausula */
 .                       { return yytext[0]; } /* match qualsevol altre caracter */
