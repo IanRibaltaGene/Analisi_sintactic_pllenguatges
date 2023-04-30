@@ -8,6 +8,7 @@
     #include <string.h>
     #include <ctype.h>
 
+    #define NUL 0
 
     extern int nlin;
     extern int yylex();
@@ -23,7 +24,8 @@
 
 %union {
     char str[1000];
-    char var;  
+    char var; 
+    void *sense; 
 }
 
 %token <var> VAR
@@ -33,12 +35,16 @@
 %left AND /* conjunction*/
 %right NEG /* negation*/
 
-%type <str> formula clause expr
+%type <sense> starter formula
+%type <str> clause expr
 
 %%
-formula : FIN                   {$$ = $1;}
+starter : {$$=NUL;}
+        | starter formula {$$=NUL;}
+        ;
+formula : FIN                   {$$ = NUL;}
         | clause FIN            { printf("Formula without implications and iff: %s\n", $1);
-                                strcpy($$, $1); }
+                                $$ = NUL; }
         | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
                                 yyerrok; }
         ;
