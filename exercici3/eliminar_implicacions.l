@@ -23,7 +23,7 @@
 			    BEGIN 0; }
 <COMMENT>. ;
 
-[A-Z]                   { yylval.var= yytext[0]-'A';
+[A-Z]                   { yylval.var= yytext[0];
 						return VAR;    } /* match variable */
 \!                      { return NEG;    } /* match negat */
 \&\&                    { return AND;   } /* match conj */
