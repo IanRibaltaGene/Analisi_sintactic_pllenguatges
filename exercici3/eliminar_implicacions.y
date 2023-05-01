@@ -85,7 +85,7 @@ clause  : expr                  { strcpy($$, $1); }
                                  strcat($$, " v ");
                                  strcat($$, "(");
                                  strcat($$,$1);
-                                 strcat($$, ")")
+                                 strcat($$, ")");
                                  strcat($$, ")");}
         ;
 
