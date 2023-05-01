@@ -70,23 +70,17 @@ clause  : expr                  { strcpy($$, $1); }
                                  strcat($$, $3);
                                  strcat($$, ")");}
         | clause DUBL expr      { strcpy($$, "(");
-                                 strcat($$, "!(");
+                                 strcat($$, "!");
                                  strcat($$, $1);
-                                 strcat($$, ")");
                                  strcat($$, " v ");
-                                 strcat($$, "(");
                                  strcat($$, $3);
-                                 strcat($$, ")");
                                  strcat($$, ")");
                                  strcat($$, " ^ ");
                                  strcat($$, "(");
-                                 strcat($$, "!(");
+                                 strcat($$, "!");
                                  strcat($$, $3);
-                                 strcat($$, ")");
                                  strcat($$, " v ");
-                                 strcat($$, "(");
                                  strcat($$,$1);
-                                 strcat($$, ")");
                                  strcat($$, ")");}
         ;
 
