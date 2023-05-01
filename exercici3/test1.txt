@@ -10,9 +10,11 @@ A <-> B;
 A < - > B;
 
 #Test 3
-A || B -> C;
-A || B -> c;
-A||(B->C);
-A->B || C->D;
+A ^ B -> C;
+A v B -> C;
+A v B -> c;
+Av(B->C);
+A->B v C->D;
+A->B ^ C->D;
 
 P && Q <-> (!R || (Q->T));
