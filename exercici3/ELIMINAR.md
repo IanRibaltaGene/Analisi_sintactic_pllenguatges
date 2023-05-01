@@ -1,8 +1,26 @@
 # Exercici 3: Eliminar les implicacions i dobles implicacions al llenguatge CP0
 
 
+## Index
+- [Exercici 3: Eliminar les implicacions i dobles implicacions al llenguatge CP0](#exercici-3-eliminar-les-implicacions-i-dobles-implicacions-al-llenguatge-cp0)
+  - [Index](#index)
+  - [Descripció](#descripció)
+  - [Execució](#execució)
+  - [Entrada](#entrada)
+  - [Sortida](#sortida)
+  - [Exemple](#exemple)
+  - [Restriccions](#restriccions)
+  - [Comentaris](#comentaris)
+  - [Sincronitzador de clausula CP0](#sincronitzador-de-clausula-cp0)
+  - [Caracter a despreciar](#caracter-a-despreciar)
+  - [Tokens](#tokens)
+  - [Consideracions ordre de precedència](#consideracions-ordre-de-precedència)
+
 ## Descripció
 Aquest exercici consisteix en eliminar les implicacions i dobles implicacions d'una fórmula proposicional en el llenguatge CP0.
+
+## Execució
+```./eliminar_implicacions fitxer_entrada```
 
 ## Entrada
 La entrada consisteix en una fórmula proposicional en el llenguatge CP0.
@@ -12,18 +30,10 @@ La sortida consisteix en la fórmula proposicional en el llenguatge CP0 sense im
 
 ## Exemple
 ```
-Entrada: (p->q)<->(r->s)
-Sortida: (p^!q)v(!r^s)
-```
-```
-Entrada: (p->q)<->(r->s)<->(t->u)
-Sortida: (p^!q)v(!r^s)v(!t^u)
-```
-```
-Entrada: (p->q)<->(r->s)<->(t->u)<->(v->w)
-Sortida: (p^!q)v(!r^s)v(!t^u)v(!v^w)
-```
+Entrada: A->B v C->D;
 
+Sortida: !((!(A) v (B) v C)) v (D)
+```
 
 ## Restriccions
 - La fórmula proposicional no contindrà espais en blanc.
@@ -36,7 +46,7 @@ Sortida: (p^!q)v(!r^s)v(!t^u)v(!v^w)
 
 ## Caracter a despreciar
 - ` ` espai en blanc i `\t` tabulador en l'entrada
-- Comentaris
+- Comentaris que comencen amb `#` i finalitzen al final de la línia
 
 ## Tokens
 - CHAR [A-Z]
@@ -50,6 +60,3 @@ Sortida: (p^!q)v(!r^s)v(!t^u)v(!v^w)
 - '(' i ')' tenen precedència sobre tots els altres operadors i poden alterlar l'ordre d'avaluació.
 - Els operadors unaris tenen precedència sobre els binaris.
 - Els operadors binaris tenen la mateixa precedència i s'avaluen de l'esquerra a la dreta.
-
-## Gramàtica
-- Fórmula proposicional: `F = CHAR | NEG F | F CONJ F | F DISH F | F IMPL F | F DUBL F | "(" F ")"`
