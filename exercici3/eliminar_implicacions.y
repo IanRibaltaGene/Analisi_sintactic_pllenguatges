@@ -42,8 +42,8 @@
 starter : {$$=NUL;}
         | starter formula {$$=NUL;}
         ;
-formula : FIN                   {$$ = NUL;}
-        | clause FIN            { printf("Formula without implications and iff: %s\n", $1);
+formula : ';' FIN               {$$ = NUL;}
+        | clause ';' FIN        { printf("Formula without implications and iff: %s\n", $1);
                                 $$ = NUL; }
         | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
                                 yyerrok; }
