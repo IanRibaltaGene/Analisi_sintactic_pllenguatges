@@ -3,7 +3,7 @@
         /*************************************************/
 
 %{
-	#include "eliminar_implicacions.tab.h"
+	#include "calcul_cojunts.tab.h"
 	int nlin=1;
 %}
 
@@ -30,5 +30,6 @@
 ":"                     { return PROD;    } /* match producció */
 "|"                     { return ALTER;   } /* match alternativa */
 ";"                     { return FIN;   } /* match final producció */
+<<EOF>>       			{return END_OF_FILE;}
 \n                      { nlin++; } /* incrementa nlin */
 .                       { return yytext[0]; } /* match qualsevol altre caracter */

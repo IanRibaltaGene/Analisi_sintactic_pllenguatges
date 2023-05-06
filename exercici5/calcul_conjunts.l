@@ -3,7 +3,7 @@
         /*************************************************/
 
 %{
-	#include "eliminar_implicacions.tab.h"
+	#include "calcul_conunts.tab.h"
 	int nlin=1;
 %}
 

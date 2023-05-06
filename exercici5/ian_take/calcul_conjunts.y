@@ -52,13 +52,13 @@
 %type <sense> program rules rule productions production
 
 %token <var> CONST TERM
-%token PROD ALTER FIN EOF
+%token PROD ALTER FIN END_OF_FILE
 
 
 %%
 
 program: { $$ = NUL; }
-       | rules EOF
+       | rules END_OF_FILE
        ;
 
 rules : rule {  }
@@ -68,21 +68,21 @@ rules : rule {  }
 rule : constructor PROD productions FIN {}
      ;
 
-productions : production { if($1 < 'A'){ 
+productions : production { /* if($1 < 'A'){ 
                             addToFirstSet(constructorTemp, $1);
                            } else if ($1 >= 'A') {
                             dependency[constructorTemp][$1 - 'A'] = true;
-                           }
+                           } */
                           }
             | productions ALTER production {  }
             ;
 
-production : symbol { $$ = $1; printf("production symbol - %c", $1); }
-           | production symbol { $$ = $1; printf("production symbol - %c", $1); }
+production : symbol { $$ = $1; printf("production symbol - %s", $$); }
+           | production symbol { $$ = $1; printf("production symbol - %s", $$); }
            ;
 
 symbol : CONST { $$ = $1 + 'A'; //Pensar-ho be
-              dependency[constructorTemp][$$] = true; }
+              dependency[constructorTemp][$1] = true; }
        | TERM { $$ = $1 + 'a';
                 addToFirstSet(constructorTemp, $1 + 'a'); }
        ;
@@ -98,8 +98,7 @@ constructor : CONST { $$ = $1;
 %%
 
 void yyerror(const char* message) {
-    fprintf(stderr, "Error: %s at line %d\n", message, nlin);
-    return 1;
+    printf(stderr, "Error: %s at line %d\n", message, nlin);
 }
 
 int main(int argc, char **argv) {
@@ -134,14 +133,14 @@ int main(int argc, char **argv) {
       memset(firstSets, false, sizeof(firstSets));
       memset(processed, false, sizeof(processed));
       memset(dependency, false, sizeof(dependency));
-      memset(order, false, MAX_CONSTRUCTORS);
+      memset(order, false, sizeof(order));
   }
 
   // Function to print the first sets for each constructor
   void printFirstSet(int constructor) {
       printf("%c = ", 'A' + constructor);
       for (int j = 0; j < MAX_TERMINALS; j++) {
-          if (firstSets[i][j]) {
+          if (firstSets[constructor][j]) {
               printf("%c ", 'a' + j);
           }
       }
