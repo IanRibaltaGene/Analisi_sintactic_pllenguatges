@@ -22,7 +22,6 @@
     extern int yylex();
     extern FILE * yyin;
 
-    int yylex();
     void yyerror(const char* message);
     void initializeData();
     void printFirstSet(int constructor);
@@ -45,11 +44,13 @@
     char terminal;
     int var;
     void* sense;
+    char* production;
 }
 
 %type <constructor> constructor
 %type <terminal> symbol
-%type <sense> program rules rule productions production
+%type <production> production
+%type <sense> program rules rule productions
 
 %token <var> CONST TERM
 %token PROD ALTER FIN END_OF_FILE
@@ -77,8 +78,8 @@ productions : production { /* if($1 < 'A'){
             | productions ALTER production {  }
             ;
 
-production : symbol { $$ = $1; printf("production symbol - %s", $$); }
-           | production symbol { $$ = $1; printf("production symbol - %s", $$); }
+production : symbol { $$ = $1; printf("production symbol 1 - %s", $$); }
+           | production symbol { $$ = $1; printf("production symbol 2 - %s", $$); }
            ;
 
 symbol : CONST { $$ = $1 + 'A'; //Pensar-ho be
@@ -98,7 +99,7 @@ constructor : CONST { $$ = $1;
 %%
 
 void yyerror(const char* message) {
-    printf(stderr, "Error: %s at line %d\n", message, nlin);
+    fprintf(stderr, "Error: %s at line %d\n", message, nlin);
 }
 
 int main(int argc, char **argv) {

@@ -2,16 +2,16 @@
         /*               ESPECIFICACIO LEX               */
         /*************************************************/
 
-%{
-	#include "calcul_cojunts.tab.h"
-	int nlin=1;
-%}
-
 %array
 %option nounput
 %option noinput
 %option noyywrap
 %x COMMENT
+%{
+	#include "calcul_cojunts.tab.h"
+	int nlin=1;
+%}
+
 
 %%
 
