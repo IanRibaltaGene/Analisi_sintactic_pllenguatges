@@ -89,7 +89,8 @@ production : symbol { printf(" asd1 ");
 symbol : CONST {printf(" asd14 ");
                 char temp = $1 + 'A'; 
                 strcpy($$, &temp); //Pensar-ho be
-                dependency[constructorTemp][atoi($1)] = true;
+                int temp2 = $1;
+                dependency[constructorTemp][temp2] = true;
                }
        | TERM { printf(" asd12 ");
                 char temp = $1 + 'a';
