@@ -137,7 +137,7 @@ int main(int argc, char **argv) {
       memset(firstSets, false, sizeof(firstSets));
       memset(processed, false, sizeof(processed));
       memset(dependency, false, sizeof(dependency));
-      memset(order, false, sizeof(order));
+      /* memset(order, false, sizeof(order)); */
   }
 
   // Function to print the first sets for each constructor
