@@ -173,11 +173,6 @@ int main(int argc, char **argv) {
             calculateFirstSet(constructor);
         }
       }
-      /* for (int i = 0; i < MAX_CONSTRUCTORS; i++) {
-        if (dependency[i][constructor] && !processed[i]) { // Si no esta processat entra???? pq? Que comporta la condicio?
-            calculateFirstSet(i);
-        }
-      } */
   }
 
   // Function to calculate the first set for a constructor
