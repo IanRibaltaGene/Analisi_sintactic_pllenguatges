@@ -44,7 +44,7 @@
     char terminal;
     int var;
     void* sense;
-    char* production;
+    char production;
 }
 
 %type <constructor> constructor

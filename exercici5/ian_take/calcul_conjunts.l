@@ -8,7 +8,7 @@
 %option noyywrap
 %x COMMENT
 %{
-	#include "calcul_cojunts.tab.h"
+	#include "calcul_conjunts.tab.h"
 	int nlin=1;
 %}
 
