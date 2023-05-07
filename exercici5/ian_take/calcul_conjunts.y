@@ -73,7 +73,7 @@ rules : rule { $$ = NUL; }
 rule : constructor PROD productions FIN { $$ = NUL; }
      | constructor PROD error FIN { $$ = NUL; yyerrok; }
         | constructor PROD productions error { $$ = NUL; yyerrok; }
-        | error FIN { $$ = NUL; yyerrok; }
+        /* | error FIN { $$ = NUL; yyerrok; } */
      ;
 
 productions : production {}
