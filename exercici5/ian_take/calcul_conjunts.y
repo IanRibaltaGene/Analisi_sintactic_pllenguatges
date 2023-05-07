@@ -96,6 +96,7 @@ constructor : CONST { $$ = $1;
                       constructorTemp = $1;
                       printf("constructor %d\n", $$);
                       order[orderIndex] = constructorTemp;
+                      printf("constructor %d\n", $$);
                       orderIndex++;
                     }
             ;
