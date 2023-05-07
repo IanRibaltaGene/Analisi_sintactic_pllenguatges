@@ -62,7 +62,7 @@
 %%
 
 program: { $$ = NUL; }
-       | rules END_OF_FILE { $$ = NUL; }
+       | rules  { $$ = NUL; }
        ;
 
 rules : rule { $$ = NUL; }
