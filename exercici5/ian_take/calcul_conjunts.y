@@ -44,7 +44,7 @@
     char terminal;
     int var;
     void* sense;
-    char production[100];
+    char production;
 }
 
 %type <constructor> constructor
@@ -78,8 +78,8 @@ productions : production { /* if($1 < 'A'){
             | productions ALTER production {  }
             ;
 
-production : symbol { $$ = $1; printf("production symbol 1 - %s", $$); }
-           | production symbol { $$ = $1; printf("production symbol 2 - %s", $$); }
+production : symbol { strcpy($$, $1); printf("production symbol 1 - %s", $$); }
+           | production symbol { strcpy($$, $1); printf("production symbol 2 - %s", $$); }
            ;
 
 symbol : CONST { $$ = $1 + 'A'; //Pensar-ho be
