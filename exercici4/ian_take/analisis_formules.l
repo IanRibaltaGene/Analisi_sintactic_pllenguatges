@@ -9,7 +9,7 @@
 %x COMMENT
 
 %{
-	#include "picosat.tab.h"
+	#include "analisis_formula.tab.h"
 	int line_number=1;
 %}
 
@@ -46,8 +46,8 @@ constant [a-c][1-9]
 [f-g][1-9]		{ return FUNC;	 } /* match funcions */
 
 \!                      { return NEG;    } /* match negat */
-\&\&                    { return CONJ;   } /* match conj */
-\|\|                    { return DISJ;   } /* match disj */
+"^"                    { return CONJ;   } /* match conj */
+"v"                    { return DISJ;   } /* match disj */
 "->"                    { return IMP;    } /* match imp */
 "<->"                   { return DIMP;   } /* match doble imp */
 
