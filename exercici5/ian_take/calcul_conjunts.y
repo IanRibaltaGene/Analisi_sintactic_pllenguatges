@@ -84,10 +84,10 @@ production : symbol { strcpy($$, $1); printf("production symbol 1 - %s", $$); }
            ;
 
 symbol : CONST { c = $1 + 'A'; 
-                strcpy($$,c); //Pensar-ho be
+                strcpy($$,&c); //Pensar-ho be
               dependency[constructorTemp][$1] = true; }
        | TERM {  c = $1 + 'a';
-                strcpy($$,c);
+                strcpy($$,&c);
                 addToFirstSet(constructorTemp, $1 + 'a'); }
        ;
 
