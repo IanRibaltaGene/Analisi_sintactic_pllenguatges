@@ -63,7 +63,7 @@
 
 program: { $$ = NUL; }
        | rules END_OF_FILE { $$ = NUL; }
-       | error END_OF_FILE { $$ = NUL; yyerrok; }
+       /* | error END_OF_FILE { $$ = NUL; yyerrok; } */
        ;
 
 rules : rule { $$ = NUL; }
