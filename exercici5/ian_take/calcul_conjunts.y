@@ -87,11 +87,11 @@ production : symbol { printf(" asd1 ");
            ;
 
 symbol : CONST {printf(" asd14 "); 
-                strcpy($$,&($1 + 'A')); //Pensar-ho be
+                strcpy($$,&char($1 + 'A')); //Pensar-ho be
               // dependency[constructorTemp][$1] = true;
                }
        | TERM { printf(" asd12 ");
-                strcpy($$,&($1 + 'a'));
+                strcpy($$,&char($1 + 'a'));
                 // printf(" asd12 ");
                 // addToFirstSet(constructorTemp, $1 + 'a');
               }
