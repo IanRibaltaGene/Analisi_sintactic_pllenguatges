@@ -42,7 +42,7 @@
 %start program
 
 %union {
-    int constructor;
+    int* constructor;
     char* terminal;
     int var;
     void* sense;
@@ -84,7 +84,8 @@ production : symbol { printf(" asd1 "); strcpy($$, $1); printf(" asd3 "); printf
            | production symbol { printf(" asd2 "); strcpy($$, $1); printf(" asd4 "); printf("production symbol 2 - %s", $$); printf(" asd "); }
            ;
 
-symbol : CONST { c = $1 + 'A'; 
+symbol : CONST {printf(" asd14 "); 
+                c = $1 + 'A'; 
                 strcpy($$,&c); //Pensar-ho be
               // dependency[constructorTemp][$1] = true;
                }
