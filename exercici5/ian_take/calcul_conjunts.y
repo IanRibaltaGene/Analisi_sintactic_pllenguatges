@@ -63,6 +63,7 @@
 
 program: { $$ = NUL; }
        | rules END_OF_FILE { $$ = NUL; }
+       | error END_OF_FILE { $$ = NUL; yyerrok; }
        ;
 
 rules : rule { $$ = NUL; }
@@ -70,7 +71,7 @@ rules : rule { $$ = NUL; }
       ;
 
 rule : constructor PROD productions FIN { $$ = NUL; }
-     | error FIN { yyerror("Error: invalid rule"); }
+     | constructor PROD error FIN { $$ = NUL; yyerrok; }
      ;
 
 productions : production {}
