@@ -87,13 +87,13 @@ production : symbol { printf(" asd1 ");
            ;
 
 symbol : CONST {printf(" asd14 ");
-                char* temp = $1 + 'A'; 
-                strcpy($$, temp); //Pensar-ho be
+                char temp = $1 + 'A'; 
+                strcpy($$, &temp); //Pensar-ho be
               // dependency[constructorTemp][$1] = true;
                }
        | TERM { printf(" asd12 ");
-                char* temp = $1 + 'a';
-                strcpy($$, temp);
+                char temp = $1 + 'a';
+                strcpy($$, &temp);
                 // printf(" asd12 ");
                 // addToFirstSet(constructorTemp, $1 + 'a');
               }
