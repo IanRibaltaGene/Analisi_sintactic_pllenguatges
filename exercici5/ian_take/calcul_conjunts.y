@@ -53,7 +53,7 @@
 
 %type <constructor> constructor
 %type <str> symbol production
-%type <sense> program rules rule productions rule_aux
+%type <sense> program rules rule productions
 
 %token <var> CONST TERM
 %token PROD ALTER FIN END_OF_FILE
@@ -67,15 +67,11 @@ program: { $$ = NUL; }
 
 rules : rule { $$ = NUL; }
       | rules rule { $$ = NUL; }
+      | error { yyerror("Syntax error"); }
       ;
 
-rule : rule_aux FIN { $$ = NUL; }
-     | error FIN { fprintf(stderr, "Error: bad rule at line %d\n", nlin); 
-                yyerrok; }
+rule : constructor PROD productions FIN { $$ = NUL; }
      ;
-
-rule_aux : constructor PROD productions { $$ = NUL; }
-         ;
 
 productions : production {}
             | productions ALTER production {  }
