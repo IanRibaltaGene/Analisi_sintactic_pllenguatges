@@ -30,6 +30,7 @@
         // Constructors x (Terminals U Constructors) -> Booleans
 
     char c;
+    char d;
 
     void yyerror(const char* message);
     void initializeData();
@@ -94,8 +95,8 @@ symbol : CONST {printf(" asd14 ");
               // dependency[constructorTemp][$1] = true;
                }
        | TERM { printf(" asd12 ");
-                c = $1 + 'a';
-                strcpy($$,&c);
+                d = $1 + 'a';
+                strcpy($$,&d);
                 // printf(" asd12 ");
                 // addToFirstSet(constructorTemp, $1 + 'a');
               }
