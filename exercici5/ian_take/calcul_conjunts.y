@@ -76,14 +76,14 @@ productions : production {}
             | productions ALTER production {  }
             ;
 
-production : symbol { strcpy($$, $1); printf("production symbol 1 - %s \n", $$);
+production : symbol { strcpy($$, $1);
                       if (isupper($1[0])) {
                           dependency[constructorTemp][$1[0] - 'A'] = true;
                       } else {
                           addToFirstSet(constructorTemp, $1[0]);
                       }
              }
-           | production symbol {strcpy($$, $1);printf("production symbol 2 - %s \n", $$);
+           | production symbol {strcpy($$, $1);
                       if (isupper($1[0])) {
                           dependency[constructorTemp][$1[0] - 'A'] = true;
                       } else {
@@ -93,13 +93,11 @@ production : symbol { strcpy($$, $1); printf("production symbol 1 - %s \n", $$);
            ;
 
 symbol : CONST {temp = $1 + 'A'; 
-                strcpy($$, &temp); //Pensar-ho be
+                strcpy($$, &temp); 
                 temp2 = $1;
-                // dependency[constructorTemp][temp2] = true;
                }
        | TERM { temp = $1 + 'a';
                 strcpy($$, &temp);
-                // addToFirstSet(constructorTemp, $1 + 'a');
               }
        ;
 
