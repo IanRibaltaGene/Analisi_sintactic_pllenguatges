@@ -23,7 +23,7 @@
     extern FILE * yyin;
 
     int constructorTemp;
-    int order[MAX_CONSTRUCTORS];
+    int order[MAX_CONSTRUCTORS] = {0};
     int orderIndex = 0;
         // Constructors [A...Z]
         // Terminals [a...z]
@@ -137,7 +137,6 @@ int main(int argc, char **argv) {
       memset(firstSets, false, sizeof(firstSets));
       memset(processed, false, sizeof(processed));
       memset(dependency, false, sizeof(dependency));
-      /* memset(order, false, sizeof(order)); */
   }
 
   // Function to print the first sets for each constructor
