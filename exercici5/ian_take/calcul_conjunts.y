@@ -22,6 +22,9 @@
     extern int yylex();
     extern FILE * yyin;
 
+    char temp;
+    int temp2;
+
     int constructorTemp;
     int order[MAX_CONSTRUCTORS] = {0};
     int orderIndex = 0;
@@ -78,35 +81,27 @@ productions : production { /* if($/1 < 'A'){
             | productions ALTER production {  }
             ;
 
-production : symbol { printf(" asd1 "); 
-            strcpy($$, $1); printf(" asd3 "); printf("production symbol 1 - %s", $$); printf(" asd ");
+production : symbol { strcpy($$, $1); printf("production symbol 1 - %s", $$); 
              }
-           | production symbol { printf(" asd2 ");
-            strcpy($$, $1); printf(" asd4 "); printf("production symbol 2 - %s", $$); printf(" asd ");
+           | production symbol {strcpy($$, $1);printf("production symbol 2 - %s", $$);
              }
            ;
 
-symbol : CONST {printf(" asd14 ");
-                char temp = $1 + 'A'; 
+symbol : CONST {temp = $1 + 'A'; 
                 strcpy($$, &temp); //Pensar-ho be
-                int temp2 = $1;
+                temp2 = $1;
                 dependency[constructorTemp][temp2] = true;
                }
-       | TERM { printf(" asd12 ");
-                char temp = $1 + 'a';
+       | TERM { temp = $1 + 'a';
                 strcpy($$, &temp);
-                printf(" asd12 ");
                 addToFirstSet(constructorTemp, $1 + 'a');
               }
        ;
 
 constructor : CONST { $$ = $1;
                       constructorTemp = $1;
-                      printf("constructor %d\n", $$);
                       order[orderIndex] = constructorTemp;
-                      printf("constructor %d\n", $$);
                       orderIndex++;
-                      printf("constructor %d\n", $$);
                     }
             ;
 
