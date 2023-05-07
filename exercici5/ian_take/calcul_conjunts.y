@@ -42,7 +42,7 @@
 %union {
     int constructor;
     char* terminal;
-    int var;
+    char var;
     void* sense;
     char* production;
 }
