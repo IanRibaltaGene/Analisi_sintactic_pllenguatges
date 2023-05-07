@@ -72,29 +72,34 @@ rules : rule { $$ = NUL; }
 rule : constructor PROD productions FIN { $$ = NUL; }
      ;
 
-productions : production { /* if($/1 < 'A'){ 
-                            addToFirstSet(constructorTemp, $/1);
-                           } else if ($/1 >= 'A') {
-                            dependency[constructorTemp][$/1 - 'A'] = true;
-                           } */
-                          }
+productions : production {}
             | productions ALTER production {  }
             ;
 
-production : symbol { strcpy($$, $1); printf("production symbol 1 - %s \n", $$); 
+production : symbol { strcpy($$, $1); printf("production symbol 1 - %s \n", $$);
+                      if (isupper($1[0])) {
+                          dependency[constructorTemp][$1[0] - 'A'] = true;
+                      } else {
+                          addToFirstSet(constructorTemp, $1[0]);
+                      }
              }
            | production symbol {strcpy($$, $1);printf("production symbol 2 - %s \n", $$);
+                      if (isupper($1[0])) {
+                          dependency[constructorTemp][$1[0] - 'A'] = true;
+                      } else {
+                          addToFirstSet(constructorTemp, $1[0]);
+                      }
              }
            ;
 
 symbol : CONST {temp = $1 + 'A'; 
                 strcpy($$, &temp); //Pensar-ho be
                 temp2 = $1;
-                dependency[constructorTemp][temp2] = true;
+                // dependency[constructorTemp][temp2] = true;
                }
        | TERM { temp = $1 + 'a';
                 strcpy($$, &temp);
-                addToFirstSet(constructorTemp, $1 + 'a');
+                // addToFirstSet(constructorTemp, $1 + 'a');
               }
        ;
 
