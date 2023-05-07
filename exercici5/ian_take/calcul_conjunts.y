@@ -53,7 +53,7 @@
 
 %type <constructor> constructor
 %type <str> symbol production
-%type <sense> program rules rule productions
+%type <sense> program rules rule productions rule_aux
 
 %token <var> CONST TERM
 %token PROD ALTER FIN END_OF_FILE
