@@ -32,7 +32,7 @@
     char c;
 
     void yyerror(const char* message);
-    void initializeData();
+    // void initializeData();
     void printFirstSet(int constructor);
     void addToFirstSet(int constructor, char terminal);
     void processDependencies(int constructor);
@@ -126,7 +126,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    initializeData();
+    //initializeData();
     yyparse();
     fclose(yyin);
 
@@ -140,11 +140,11 @@ int main(int argc, char **argv) {
 }
 
   // Function to initialize the firstSets and processed arrays
-  void initializeData() {
+  /* void initializeData() {
       memset(firstSets, false, sizeof(firstSets));
       memset(processed, false, sizeof(processed));
       memset(dependency, false, sizeof(dependency));
-  }
+  } */
 
   // Function to print the first sets for each constructor
   void printFirstSet(int constructor) {
