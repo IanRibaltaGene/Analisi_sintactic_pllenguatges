@@ -70,7 +70,7 @@ rules : rule { $$ = NUL; }
       ;
 
 rule : constructor PROD productions FIN { $$ = NUL; }
-     | error FIN { yyerror("Error: invalid rule"); }
+     | error FIN { yyerrok; }
      ;
 
 productions : production {}
