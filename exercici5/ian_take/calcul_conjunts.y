@@ -171,6 +171,11 @@ int main(int argc, char **argv) {
   void processDependencies(int constructor) {
       processed[constructor] = true;
       for (int i = 0; i < MAX_CONSTRUCTORS; i++) {
+        if (dependency[constructor][i] && !processed[i]) { // Si no esta processat entra???? pq? Que comporta la condicio?
+            calculateFirstSet(constructor);
+        }
+      }
+      for (int i = 0; i < MAX_CONSTRUCTORS; i++) {
         if (dependency[i][constructor] && !processed[i]) { // Si no esta processat entra???? pq? Que comporta la condicio?
             calculateFirstSet(i);
         }
