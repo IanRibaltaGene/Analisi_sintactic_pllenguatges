@@ -53,7 +53,7 @@
 
 %type <constructor> constructor
 %type <str> symbol production
-%type <sense> program rules rule productions
+%type <sense> program rules rule productions rule_aux
 
 %token <var> CONST TERM
 %token PROD ALTER FIN
@@ -69,8 +69,13 @@ rules : rule { $$ = NUL; }
       | rules rule { $$ = NUL; }
       ;
 
-rule : constructor PROD productions FIN { $$ = NUL; }
+rule : rule_aux FIN { $$ = NUL; }
+     | error FIN { yyerrok;
+                 $$ = NUL; }
      ;
+
+rule_aux : constructor PROD productions { $$ = NUL; }
+         ;
 
 productions : production {}
             | productions ALTER production {  }
