@@ -32,6 +32,7 @@
     int constructorTemp;
     int order[MAX_CONSTRUCTORS];
     int orderIndex = 0;
+    char c;
         // Constructors [A...Z]
         // Terminals [a...z]
         // Constructors x (Terminals U Constructors) -> Booleans
@@ -82,9 +83,11 @@ production : symbol { strcpy($$, $1); printf("production symbol 1 - %s", $$); }
            | production symbol { strcpy($$, $1); printf("production symbol 2 - %s", $$); }
            ;
 
-symbol : CONST { $$ = $1 + 'A'; //Pensar-ho be
+symbol : CONST { c = $1 + 'A'; 
+                strcpy($$,c); //Pensar-ho be
               dependency[constructorTemp][$1] = true; }
-       | TERM { $$ = $1 + 'a';
+       | TERM {  c = $1 + 'a';
+                strcpy($$,c);
                 addToFirstSet(constructorTemp, $1 + 'a'); }
        ;
 
