@@ -29,9 +29,6 @@
         // Terminals [a...z]
         // Constructors x (Terminals U Constructors) -> Booleans
 
-    char c;
-    char d;
-
     void yyerror(const char* message);
     void initializeData();
     void printFirstSet(int constructor);
@@ -90,13 +87,11 @@ production : symbol { printf(" asd1 ");
            ;
 
 symbol : CONST {printf(" asd14 "); 
-                c = $1 + 'A'; 
-                strcpy($$,&c); //Pensar-ho be
+                strcpy($$,&($1 + 'A')); //Pensar-ho be
               // dependency[constructorTemp][$1] = true;
                }
        | TERM { printf(" asd12 ");
-                d = $1 + 'a';
-                strcpy($$,&d);
+                strcpy($$,&($1 + 'a'));
                 // printf(" asd12 ");
                 // addToFirstSet(constructorTemp, $1 + 'a');
               }
