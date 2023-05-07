@@ -67,7 +67,6 @@ program: { $$ = NUL; }
 
 rules : rule { $$ = NUL; }
       | rules rule { $$ = NUL; }
-      | error { yyerror("Syntax error"); }
       ;
 
 rule : constructor PROD productions FIN { $$ = NUL; }
