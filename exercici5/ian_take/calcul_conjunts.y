@@ -22,20 +22,19 @@
     extern int yylex();
     extern FILE * yyin;
 
+    int constructorTemp;
+    int order[MAX_CONSTRUCTORS];
+    int orderIndex = 0;
+        // Constructors [A...Z]
+        // Terminals [a...z]
+        // Constructors x (Terminals U Constructors) -> Booleans
+
     void yyerror(const char* message);
     void initializeData();
     void printFirstSet(int constructor);
     void addToFirstSet(int constructor, char terminal);
     void processDependencies(int constructor);
     void calculateFirstSet(int constructor);
-
-    int constructorTemp;
-    int order[MAX_CONSTRUCTORS];
-    int orderIndex = 0;
-    char c;
-        // Constructors [A...Z]
-        // Terminals [a...z]
-        // Constructors x (Terminals U Constructors) -> Booleans
 %}
 
 %start program
@@ -70,10 +69,10 @@ rules : rule {  }
 rule : constructor PROD productions FIN {}
      ;
 
-productions : production { /* if($1 < 'A'){ 
-                            addToFirstSet(constructorTemp, $1);
-                           } else if ($1 >= 'A') {
-                            dependency[constructorTemp][$1 - 'A'] = true;
+productions : production { /* if($/1 < 'A'){ 
+                            addToFirstSet(constructorTemp, $/1);
+                           } else if ($/1 >= 'A') {
+                            dependency[constructorTemp][$/1 - 'A'] = true;
                            } */
                           }
             | productions ALTER production {  }
@@ -83,16 +82,19 @@ production : symbol { strcpy($$, $1); printf("production symbol 1 - %s", $$); }
            | production symbol { strcpy($$, $1); printf("production symbol 2 - %s", $$); }
            ;
 
-symbol : CONST { c = $1 + 'A'; 
+symbol : CONST { char c = $1 + 'A'; 
                 strcpy($$,&c); //Pensar-ho be
-              dependency[constructorTemp][$1] = true; }
-       | TERM {  c = $1 + 'a';
+              // dependency[constructorTemp][$1] = true;
+               }
+       | TERM {  char c = $1 + 'a';
                 strcpy($$,&c);
-                addToFirstSet(constructorTemp, $1 + 'a'); }
+                // addToFirstSet(constructorTemp, $1 + 'a');
+                 }
        ;
 
 constructor : CONST { $$ = $1;
                       constructorTemp = $1;
+                      printf("constructor %d\n", $$);
                       order[orderIndex] = constructorTemp;
                       orderIndex++;
                     }
@@ -129,8 +131,6 @@ int main(int argc, char **argv) {
 
     return 0;
 }
-
-
 
   // Function to initialize the firstSets and processed arrays
   void initializeData() {
