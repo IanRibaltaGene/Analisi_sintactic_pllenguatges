@@ -81,9 +81,9 @@ productions : production { /* if($/1 < 'A'){
             | productions ALTER production {  }
             ;
 
-production : symbol { strcpy($$, $1); printf("production symbol 1 - %s", $$); 
+production : symbol { strcpy($$, $1); printf("production symbol 1 - %s \n", $$); 
              }
-           | production symbol {strcpy($$, $1);printf("production symbol 2 - %s", $$);
+           | production symbol {strcpy($$, $1);printf("production symbol 2 - %s \n", $$);
              }
            ;
 
