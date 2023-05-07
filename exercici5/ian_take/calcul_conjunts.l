@@ -31,5 +31,4 @@
 "|"                     { return ALTER;   } /* match alternativa */
 ";"                     { return FIN;   } /* match final producció */
 \n                      { nlin++; } /* incrementa nlin */
-<<EOF>>       			{ return END_OF_FILE; } /* match final de fitxer */
 .                       { return yytext[0]; } /* match qualsevol altre caracter */

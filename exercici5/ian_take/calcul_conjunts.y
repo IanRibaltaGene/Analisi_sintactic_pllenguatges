@@ -56,13 +56,13 @@
 %type <sense> program rules rule productions
 
 %token <var> CONST TERM
-%token PROD ALTER FIN END_OF_FILE
+%token PROD ALTER FIN
 
 
 %%
 
 program: { $$ = NUL; }
-       | rules  { $$ = NUL; }
+       | rules { $$ = NUL; }
        ;
 
 rules : rule { $$ = NUL; }
