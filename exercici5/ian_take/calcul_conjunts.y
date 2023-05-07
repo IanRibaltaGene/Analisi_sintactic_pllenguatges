@@ -42,8 +42,8 @@
 %start program
 
 %union {
-    int* constructor;
-    char* terminal;
+    int constructor;
+    char terminal;
     int var;
     void* sense;
     char* production;
