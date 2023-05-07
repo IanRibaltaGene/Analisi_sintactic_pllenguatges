@@ -60,15 +60,15 @@
 
 %%
 
-program: {  }
-       | rules END_OF_FILE
+program: { $$ = NUL; }
+       | rules END_OF_FILE { $$ = NUL; }
        ;
 
-rules : rule {  }
-      | rules rule {  }
+rules : rule { $$ = NUL; }
+      | rules rule { $$ = NUL; }
       ;
 
-rule : constructor PROD productions FIN {}
+rule : constructor PROD productions FIN { $$ = NUL; }
      ;
 
 productions : production { /* if($/1 < 'A'){ 
@@ -94,7 +94,7 @@ symbol : CONST {printf(" asd14 ");
                 strcpy($$,&c);
                 printf(" asd12 ");
                 // addToFirstSet(constructorTemp, $1 + 'a');
-                 }
+              }
        ;
 
 constructor : CONST { $$ = $1;
