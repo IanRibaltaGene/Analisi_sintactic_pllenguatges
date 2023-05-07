@@ -69,9 +69,13 @@ rules : rule { $$ = NUL; }
       | rules rule { $$ = NUL; }
       ;
 
-rule : constructor PROD productions FIN { $$ = NUL; }
-     | error FIN { yyerrok; }
+rule : rule_aux FIN { $$ = NUL; }
+     | error FIN { fprintf(stderr, "Error: bad rule at line %d\n", nlin); 
+                yyerrok; }
      ;
+
+rule_aux : constructor PROD productions { $$ = NUL; }
+         ;
 
 productions : production {}
             | productions ALTER production {  }
