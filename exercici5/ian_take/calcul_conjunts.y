@@ -80,19 +80,23 @@ productions : production { /* if($/1 < 'A'){
             | productions ALTER production {  }
             ;
 
-production : symbol { printf(" asd1 "); strcpy($$, $1); printf(" asd3 "); printf("production symbol 1 - %s", $$); printf(" asd "); }
-           | production symbol { printf(" asd2 "); strcpy($$, $1); printf(" asd4 "); printf("production symbol 2 - %s", $$); printf(" asd "); }
+production : symbol { printf(" asd1 "); 
+            // strcpy($$, $1); printf(" asd3 "); printf("production symbol 1 - %s", $$); printf(" asd ");
+             }
+           | production symbol { printf(" asd2 ");
+            // strcpy($$, $1); printf(" asd4 "); printf("production symbol 2 - %s", $$); printf(" asd ");
+             }
            ;
 
 symbol : CONST {printf(" asd14 "); 
-                c = $1 + 'A'; 
-                strcpy($$,&c); //Pensar-ho be
+                // c = $1 + 'A'; 
+                // strcpy($$,&c); //Pensar-ho be
               // dependency[constructorTemp][$1] = true;
                }
        | TERM { printf(" asd12 ");
-                c = $1 + 'a';
-                strcpy($$,&c);
-                printf(" asd12 ");
+                // c = $1 + 'a';
+                // strcpy($$,&c);
+                // printf(" asd12 ");
                 // addToFirstSet(constructorTemp, $1 + 'a');
               }
        ;
