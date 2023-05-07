@@ -1,4 +1,4 @@
-//Exemple gramàtica LL(1) sense cicles ni produccions buides error 7?
+//Exemple gramàtica LL(1) sense cicles ni produccions buides error lin 8 marcada 9
 S : aAc | fA | Bdef
     ;
 B : Ab | Ad | k
