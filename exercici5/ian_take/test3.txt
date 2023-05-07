@@ -3,7 +3,7 @@ S : aAc | fA | Bdef
     ;
 B : Ab | Ad | k
     ;
-D : Ab | dB | Scf
+D : Ab | dB
     ;
 A : ilm | ml
     ;

@@ -5,5 +5,5 @@ B : Ab | Ad | k
     ;
 A : ilm | ml
     ;
-D : Ab | dB | Scf
+D : Ab | dB
     ;
