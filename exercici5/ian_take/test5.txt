@@ -1,0 +1,8 @@
+//Exemple gramàtica LL(1) sense cicles ni produccions buides error 3
+S : aAc | fA | Bdef
+    ;
+B : Ab | Ad | k
+A : ilm | ml
+    ;
+D : Ab | dB
+    ;
