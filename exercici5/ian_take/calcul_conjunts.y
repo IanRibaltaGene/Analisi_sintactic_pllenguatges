@@ -29,6 +29,8 @@
         // Terminals [a...z]
         // Constructors x (Terminals U Constructors) -> Booleans
 
+    char c;
+
     void yyerror(const char* message);
     void initializeData();
     void printFirstSet(int constructor);
@@ -78,16 +80,18 @@ productions : production { /* if($/1 < 'A'){
             | productions ALTER production {  }
             ;
 
-production : symbol { strcpy($$, $1); printf("production symbol 1 - %s", $$); }
-           | production symbol { strcpy($$, $1); printf("production symbol 2 - %s", $$); }
+production : symbol { printf(" asd1 "); strcpy($$, $1); printf(" asd3 "); printf("production symbol 1 - %s", $$); printf(" asd "); }
+           | production symbol { printf(" asd2 "); strcpy($$, $1); printf(" asd4 "); printf("production symbol 2 - %s", $$); printf(" asd "); }
            ;
 
-symbol : CONST { char c = $1 + 'A'; 
+symbol : CONST { c = $1 + 'A'; 
                 strcpy($$,&c); //Pensar-ho be
               // dependency[constructorTemp][$1] = true;
                }
-       | TERM {  char c = $1 + 'a';
+       | TERM { printf(" asd12 ");
+                c = $1 + 'a';
                 strcpy($$,&c);
+                printf(" asd12 ");
                 // addToFirstSet(constructorTemp, $1 + 'a');
                  }
        ;
@@ -98,6 +102,7 @@ constructor : CONST { $$ = $1;
                       order[orderIndex] = constructorTemp;
                       printf("constructor %d\n", $$);
                       orderIndex++;
+                      printf("constructor %d\n", $$);
                     }
             ;
 
