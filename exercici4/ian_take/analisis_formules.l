@@ -13,20 +13,6 @@
 	int line_number=1;
 %}
 
-/*
-#define VAR 400
-#define CONS 401
-#define PRED 402
-#define FUNC 403
-#define NEG 404
-#define CONJ 405
-#define DISJ 406
-#define IMP 407
-#define DIMP 408
-#define FORALL 409
-#define EXISTS 410 
-*/
-
 separador ","
 variable [x-z][1-9]
 constant [a-c][1-9]
@@ -51,13 +37,13 @@ constant [a-c][1-9]
 "->"                    { return IMP;    } /* match imp */
 "<->"                   { return DIMP;   } /* match doble imp */
 
-"\forAll"		{ return FORALL; } /* match forall */
-"\exists"		{ return EXISTS; } /* match exists */
+"/forAll"		{ return FORALL; } /* match forall */
+"/exists"		{ return EXISTS; } /* match exists */
 
-\(                      { return yytext[0];    } /* match parentesis esquerra */ 
-\)                      { return yytext[0];    } /* match parentesis dreta */
+"("                      { return yytext[0];    } /* match parentesis esquerra */ 
+")"                      { return yytext[0];    } /* match parentesis dreta */
 {separador}				{ return yytext[0];    } /* match separator */
 
 \n                      { line_number++;
-						return FIN; } /* match newline, incrementa line_number i retorna separador de clausules */
-.                       
+						return NEWLINE; } /* match newline, incrementa line_number i retorna separador de clausules */
+.                       {return yytext[0];} /* match tota la resta de caracters */

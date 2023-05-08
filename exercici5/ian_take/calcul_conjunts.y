@@ -117,18 +117,18 @@ constructor : CONST { $$ = $1;
 %%
 
 void yyerror(const char* message) {
-    fprintf(stderr, "Error: %s at line %d\n", message, nlin);
+    fprintf(stderr, "Error: %s a la linea %d\n", message, nlin);
 }
 
 int main(int argc, char **argv) {
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s <input_file>\n", argv[0]);
+        fprintf(stderr, "Ús: %s <input_file>\n", argv[0]);
         return 1;
     }
 
     yyin = fopen(argv[1], "r");
     if (yyin == NULL) {
-        fprintf(stderr, "Error: could not open file %s\n", argv[1]);
+        fprintf(stderr, "Error: no s'ha pogut obrir el fitxer %s\n", argv[1]);
         return 1;
     }
 
