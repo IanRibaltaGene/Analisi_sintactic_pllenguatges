@@ -14,8 +14,9 @@
 %x COMMENT
 
 %%
+[:space:]+       ;        /* ignorar espais blancs */
 
-[ \t]+        ;           /* ignorar espais blancs i tabs */ 
+[ \t]+        ;           /* ignorar espais tabs */ 
 
 	/* Comentaris, incrementa line_number */
 "#"				{ BEGIN COMMENT; }
