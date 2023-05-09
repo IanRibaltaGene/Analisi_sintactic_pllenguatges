@@ -16,7 +16,7 @@
 
 %%
 
-[ \t]+                  /* ignorar espais blancs i tabs */ 
+[ \t]+        ;                 /* ignorar espais blancs i tabs */ 
 
 	/* Comentaris, incrementa line_number */
 "//"			{ BEGIN COMMENT; }
