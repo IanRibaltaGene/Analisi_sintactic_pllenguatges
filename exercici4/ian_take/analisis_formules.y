@@ -37,7 +37,7 @@
 %left DISJ
 %left IMP DIMP
 
-%type <sense> program input formula atomic_formula quantified_formula terms term
+%type <sense> program input formula atomic_formula terms
 
 %%
 
@@ -53,7 +53,8 @@ input: NEWLINE { $$ = NUL;}
 
 formula: atomic_formula { $$ = NUL;}
        | NEG formula { $$ = NUL;}
-       | quantified_formula { $$ = NUL;}
+       | FORALL VAR formula { $$ = NUL;}
+       | EXISTS VAR formula { $$ = NUL;}
        | '(' formula ')' { $$ = NUL;}
        | formula CONJ formula { $$ = NUL;}
        | formula DISJ formula { $$ = NUL;}
@@ -64,19 +65,21 @@ formula: atomic_formula { $$ = NUL;}
 atomic_formula: PRED '(' terms ')' { $$ = NUL;}
               ;
 
-quantified_formula: FORALL VAR formula { $$ = NUL;}
+/* quantified_formula: FORALL VAR formula { $$ = NUL;}
                   | EXISTS VAR formula { $$ = NUL;}
-                  ;
+                  ; */
 
 terms: { $$ = NUL;}
-     | term { $$ = NUL;}
+     | VAR { $$ = NUL;}
+     | CONS { $$ = NUL;}
+     | FUNC '(' terms ')' { $$ = NUL;}
      | terms ',' term { $$ = NUL;}
      ;
 
-term: VAR { $$ = NUL;}
+/* term: VAR { $$ = NUL;}
     | CONS { $$ = NUL;}
     | FUNC '(' terms ')' { $$ = NUL;}
-    ;
+    ; */
 
 
 %%
