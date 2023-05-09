@@ -48,31 +48,31 @@ input: { $$ = NUL; }
      | input formula NEWLINE { $$ = NUL;}
      ;
 
-formula: atomic_formula
-       | NEG formula
-       | quantified_formula
-       | '(' formula ')'
-       | formula CONJ formula
-       | formula DISJ formula
-       | formula IMP formula
-       | formula DIMP formula
+formula: atomic_formula { $$ = NUL;}
+       | NEG formula { $$ = NUL;}
+       | quantified_formula { $$ = NUL;}
+       | '(' formula ')' { $$ = NUL;}
+       | formula CONJ formula { $$ = NUL;}
+       | formula DISJ formula { $$ = NUL;}
+       | formula IMP formula { $$ = NUL;}
+       | formula DIMP formula { $$ = NUL;}
        ;
 
-atomic_formula: PRED '(' terms ')'
+atomic_formula: PRED '(' terms ')' { $$ = NUL;}
               ;
 
-quantified_formula: FORALL VAR formula
-                  | EXISTS VAR formula
+quantified_formula: FORALL VAR formula { $$ = NUL;}
+                  | EXISTS VAR formula { $$ = NUL;}
                   ;
 
-terms: {}
-     | term
-     | terms ',' term
+terms: { $$ = NUL;}
+     | term { $$ = NUL;}
+     | terms ',' term { $$ = NUL;}
      ;
 
-term: VAR
-    | CONS
-    | FUNC '(' terms ')'
+term: VAR { $$ = NUL;}
+    | CONS { $$ = NUL;}
+    | FUNC '(' terms ')' { $$ = NUL;}
     ;
 
 
