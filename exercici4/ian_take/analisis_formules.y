@@ -73,7 +73,9 @@ terms: { $$ = NUL;}
      | VAR { $$ = NUL;}
      | CONS { $$ = NUL;}
      | FUNC '(' terms ')' { $$ = NUL;}
-     | terms ',' term { $$ = NUL;}
+     | terms ',' VAR { $$ = NUL;}
+     | terms ',' CONS { $$ = NUL;}
+     | terms ',' FUNC '(' terms ')' { $$ = NUL;}
      ;
 
 /* term: VAR { $$ = NUL;}
