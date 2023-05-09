@@ -45,13 +45,13 @@ starter : {$$=NUL;}
 
 formulas: formula                 { $$=NUL; }
         | formulas formula FIN    { $$=NUL; }
+        | error FIN                { yyerrok;
+                                    $$ = NUL; }
         ;
 
 formula : ';'                   { $$ = NUL; }
         | clause ';'            { printf("Formula without implications and iff: %s\n", $1);
                                 $$ = NUL; }
-        | error FIN                { yyerrok;
-                                    $$ = NUL; }
         ;
 
 clause  : expr                  { strcpy($$, $1); }
