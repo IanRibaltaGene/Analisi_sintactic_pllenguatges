@@ -43,7 +43,6 @@
 
 input: %empty
      | input formula NEWLINE
-     | input NEWLINE
      ;
 
 formula: atomic_formula
