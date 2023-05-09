@@ -45,13 +45,13 @@ program: { $$ = NUL;}
        | input { $$ = NUL;}
        ;
 
-input: NEWLINE { $$ = NUL;}
-     | input formula NEWLINE { $$ = NUL;}
+input: input formula NEWLINE { $$ = NUL;}
      | error NEWLINE { yyerrok;
                     $$ = NUL;}
      ;
 
-formula: atomic_formula { $$ = NUL;}
+formula: NEWLINE { $$ = NUL;}
+       | atomic_formula { $$ = NUL;}
        | NEG formula { $$ = NUL;}
        | quantified_formula { $$ = NUL;}
        | '(' formula ')' { $$ = NUL;}
