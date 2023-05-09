@@ -20,7 +20,7 @@
     void yyerror(const char *s);
     extern int yylex();
     extern int yyparse();
-}%
+%}
 
 %union {
     char *val;
