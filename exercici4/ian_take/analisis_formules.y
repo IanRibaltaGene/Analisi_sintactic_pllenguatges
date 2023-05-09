@@ -37,7 +37,7 @@
 %left DISJ
 %left IMP DIMP
 
-%type <sense> program input formula terms term
+%type <sense> program input formula atomic_formula quantified_formula terms term fbf
 
 %%
 
@@ -45,15 +45,19 @@ program: { $$ = NUL;}
        | input { $$ = NUL;}
        ;
 
-input: input formula NEWLINE { $$ = NUL;}
-     | error NEWLINE { yyerrok;
-                    $$ = NUL;}
+input: fbf { $$ = NUL;}
+     | input fbf { $$ = NUL;}
      ;
 
-formula: PRED '(' terms ')' { $$ = NUL;}
+fbf: NEWLINE { $$ = NUL;}
+   | formula NEWLINE { $$ = NUL; fprintf(stdout, "Formula fbf correcta\n");}
+   | error NEWLINE { yyerrok;
+                    $$ = NUL;}
+   ;
+
+formula: atomic_formula { $$ = NUL;}
        | NEG formula { $$ = NUL;}
-       | FORALL VAR formula { $$ = NUL;}
-       | EXISTS VAR formula { $$ = NUL;}
+       | quantified_formula { $$ = NUL;}
        | '(' formula ')' { $$ = NUL;}
        | formula CONJ formula { $$ = NUL;}
        | formula DISJ formula { $$ = NUL;}
@@ -61,12 +65,12 @@ formula: PRED '(' terms ')' { $$ = NUL;}
        | formula DIMP formula { $$ = NUL;}
        ;
 
-/* atomic_formula: PRED '(' terms ')' { $$ = NUL;}
-              ; */
+atomic_formula: PRED '(' terms ')' { $$ = NUL;}
+              ;
 
-/* quantified_formula: FORALL VAR formula { $$ = NUL;}
+quantified_formula: FORALL VAR formula { $$ = NUL;}
                   | EXISTS VAR formula { $$ = NUL;}
-                  ; */
+                  ;
 
 terms: { $$ = NUL;}
      | term { $$ = NUL;}

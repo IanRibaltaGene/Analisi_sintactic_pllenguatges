@@ -1,4 +1,3 @@
-// Tests individuals
 // NO FBF
 // Correcte
 x1
@@ -13,20 +12,11 @@ C2
 x$ XX
 
 
-// Tests FBF
-// Tests Correctes
-
-forAll x1 forAll x2 (P1(x1,x2) -> P2(x2))
-
-forAll x1 forAll x2 (P1(x1,x2) -> P2(x2))
-forAll x1 (P1(x1,x2) <-> (exists x2 P2(x2) ^ P3(x1,x2) v !P2(f1(x1,x2))))
-
-// Tests Globals Correctes Lèxicament Pero incorrectes sintàcticament
+// Tests Globals Incorrectes 
 
 forAll x1 forAll x2 exists (P1(x1,x2) - > P2(x2)P3(a4)
 forAll x1 (P1(x1,x2) forAll (exists x2 P2(x2)!P3(x1,x2) forAll !P2(f1(x1,x2)))
 
-// Tests Globals Incorrectes
 
 forAll m1 forAll m2 (P1(x1,x2)−> P2(x2))
 FORALL x1 FORall m2 (P1(x1,x2)−> P2(x2))

@@ -1,0 +1,7 @@
+// Tests FBF
+// Tests Correctes
+
+forAll x1 forAll x2 (P1(x1,x2) -> P2(x2))
+
+forAll x1 forAll x2 (P1(x1,x2) -> P2(x2))
+forAll x1 (P1(x1,x2) <-> (exists x2 P2(x2) ^ P3(x1,x2) v !P2(f1(x1,x2))))
