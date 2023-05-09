@@ -31,14 +31,13 @@
 %token FORALL EXISTS
 %token NEWLINE
 
-%precedence NEG
-%left NEG
-%right FORALL EXISTS
-%left CONJ
-%left DISJ
-%left IMP DIMP
 
-%precedence ','
+%left IMP DIMP
+%left DISJ
+%left CONJ
+%right FORALL EXISTS
+%right NEG
+
 %type <sense> program input formula atomic_formula quantified_formula terms term fbf
 
 %%
