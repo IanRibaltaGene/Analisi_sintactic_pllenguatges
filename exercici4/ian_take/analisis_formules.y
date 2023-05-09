@@ -47,14 +47,14 @@ input: fbf { $$ = NUL;}
      | input fbf { $$ = NUL;}
      ;
 
-fbf: NEWLINE { $$ = NUL;}
-   | formula NEWLINE { $$ = NUL; fprintf(stdout, "Formula fbf correcta\n");}
+fbf: formula NEWLINE { $$ = NUL; fprintf(stdout, "Formula fbf correcta\n");}
+   | NEWLINE { $$ = NUL;}
    | error NEWLINE { yyerrok;
                     $$ = NUL;}
    ;
 
 formula: atomic_formula { $$ = NUL;}
-       | NEG formula %prec NEG { $$ = NUL;}
+       | NEG formula { $$ = NUL;}
        | quantified_formula { $$ = NUL;}
        | '(' formula ')' %prec FORALL { $$ = NUL;}
        | formula CONJ formula { $$ = NUL;}
@@ -63,7 +63,7 @@ formula: atomic_formula { $$ = NUL;}
        | formula DIMP formula { $$ = NUL;}
        ;
 
-atomic_formula: PRED '(' terms ')' %prec PRED { $$ = NUL;}
+atomic_formula: PRED '(' terms ')' { $$ = NUL;}
               ;
 
 quantified_formula: FORALL VAR formula { $$ = NUL;}
