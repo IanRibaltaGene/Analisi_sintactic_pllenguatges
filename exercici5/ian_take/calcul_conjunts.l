@@ -14,7 +14,7 @@
 
 
 %%
-
+[ ]+ 				  ;        /* ignorar espais en blanc */
 [ \t]+        ;        /* ignorar espais blancs i tabs */ 
 
 	/* Comentaris, incrementa line_number */

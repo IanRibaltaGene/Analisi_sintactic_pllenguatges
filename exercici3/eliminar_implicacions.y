@@ -43,12 +43,12 @@ starter : {$$=NUL;}
         | formulas {$$=NUL;}
         ;
 
-formulas: formula              { $$=NUL; }
+formulas: formula                 { $$=NUL; }
         | formulas formula FIN    { $$=NUL; }
         ;
 
 formula : ';'                   {$$ = NUL;}
-        | clause ';'        { printf("Formula without implications and iff: %s\n", $1);
+        | clause ';'            { printf("Formula without implications and iff: %s\n", $1);
                                 $$ = NUL; }
         | error FIN             { yyerrok; }
         ;
