@@ -38,8 +38,8 @@ constant [a-c][1-9]
 "->"                    { return IMP;    } /* match imp */
 "<->"                   { return DIMP;   } /* match doble imp */
 
-"/forAll"		{ return FORALL; } /* match forall */
-"/exists"		{ return EXISTS; } /* match exists */
+"forAll"		{ return FORALL; } /* match forall */
+"exists"		{ return EXISTS; } /* match exists */
 
 "("                      { return yytext[0];    } /* match parentesis esquerra */ 
 ")"                      { return yytext[0];    } /* match parentesis dreta */

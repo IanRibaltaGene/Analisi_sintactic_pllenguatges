@@ -43,6 +43,7 @@
 
 input: %empty
      | input formula NEWLINE
+     | error NEWLINE { yyerrok; }
      ;
 
 formula: atomic_formula

@@ -10,17 +10,17 @@ x1f1 // Correcte
 
 // Tests Globals Correctes
 
-/forall x1 /forall x2 (P1(x1,x2) - > P2(x2))
-/forall x1 (P1(x1,x2) < - > (/exists x2 P2(x2) ^ P3(x1,x2) v !P2(f1(x1,x2)))
+forall x1 forall x2 (P1(x1,x2) - > P2(x2))
+forall x1 (P1(x1,x2) < - > (exists x2 P2(x2) ^ P3(x1,x2) v !P2(f1(x1,x2)))
 
 // Tests Globals Correctes Lèxicament
 
-/forall x1 /forall x2 /exists (P1(x1,x2) - > P2(x2)P3(a4)
-/forall x1 (P1(x1,x2) /forall (/exists x2 P2(x2)!P3(x1,x2) /forall !P2(f1(x1,x2)))
+forall x1 forall x2 exists (P1(x1,x2) - > P2(x2)P3(a4)
+forall x1 (P1(x1,x2) forall (exists x2 P2(x2)!P3(x1,x2) forall !P2(f1(x1,x2)))
 
 // Tests Globals Incorrectes
 
-/forall m1 /forall m2 (P1(x1,x2)− > P2(x2))
-/FORALL x1 /FORall m2 (P1(x1,x2)− > P2(x2))
-/forall x1 /exists x2 (P1(x1,x2) * (/exits x2 P2(x2) + P3(x1,x2)∨||!P2(f1(x1,x2)))
-/forall x1 : x1 >= 5 /forall x2 . (P1(x1,x2)− > P2(x2)) ;
+forall m1 forall m2 (P1(x1,x2)− > P2(x2))
+FORALL x1 FORall m2 (P1(x1,x2)− > P2(x2))
+forall x1 exists x2 (P1(x1,x2) * (exits x2 P2(x2) + P3(x1,x2) ∨ !P2(f1(x1,x2)))
+forall x1 : x1 >= 5 forall x2 . (P1(x1,x2)− > P2(x2)) ;
