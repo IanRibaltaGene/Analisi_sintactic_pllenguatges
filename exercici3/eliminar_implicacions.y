@@ -44,12 +44,10 @@ starter : {$$=NUL;}
         ;
 
 formulas: formula              { $$=NUL; }
-        | formulas formula     { $$=NUL; }
+        | formulas formula FIN    { $$=NUL; }
         ;
 
 formula : ';'                   {$$ = NUL;}
-        | FIN                   {$$ = NUL;}
-        | ';' FIN               {$$ = NUL;}
         | clause ';' FIN        { printf("Formula without implications and iff: %s\n", $1);
                                 $$ = NUL; }
         | error FIN             { yyerrok; }
