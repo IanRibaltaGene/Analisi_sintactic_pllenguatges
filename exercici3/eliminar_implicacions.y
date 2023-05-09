@@ -35,13 +35,18 @@
 %left AND /* conjunction*/
 %right NEG /* negation*/
 
-%type <sense> starter formula
+%type <sense> starter formula formulas
 %type <str> clause expr
 
 %%
 starter : {$$=NUL;}
-        | starter formula {$$=NUL;}
+        | formulas {$$=NUL;}
         ;
+
+formulas: formula              { $$=NUL; }
+        | formulas formula     { $$=NUL; }
+        ;
+
 formula : ';'                   {$$ = NUL;}
         | FIN                   {$$ = NUL;}
         | ';' FIN               {$$ = NUL;}

@@ -19,7 +19,7 @@
     extern int yyparse();
 %}
 
-%start input
+%start program
 
 %union {
     char val;
@@ -37,12 +37,15 @@
 %left DISJ
 %left IMP DIMP
 
-%type <sense> input formula atomic_formula quantified_formula terms term
+%type <sense> program input formula atomic_formula quantified_formula terms term
 
 %%
 
-input: { $$ = NUL; }
-     | input formula NEWLINE { $$ = NUL;}
+program: { $$ = NUL;}
+       | input { $$ = NUL;}
+       ;
+
+input: input formula NEWLINE { $$ = NUL;}
      | error NEWLINE { yyerrok;}
      ;
 
