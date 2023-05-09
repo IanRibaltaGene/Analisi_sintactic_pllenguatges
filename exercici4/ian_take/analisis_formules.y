@@ -30,7 +30,7 @@
 %token NEG CONJ DISJ IMP DIMP
 %token FORALL EXISTS
 %token NEWLINE
-
+%nonassoc NEWLINE
 
 %left IMP DIMP
 %left DISJ
@@ -57,9 +57,9 @@ fbf: NEWLINE { $$ = NUL;}
    ;
 
 formula: atomic_formula { $$ = NUL;}
-       | NEG formula %prec NEG { $$ = NUL;}
+       | NEG formula { $$ = NUL;}
        | quantified_formula { $$ = NUL;}
-       | '(' formula ')' { $$ = NUL;}
+       | '(' formula ')' %prec FORALL { $$ = NUL;}
        | formula CONJ formula { $$ = NUL;}
        | formula DISJ formula { $$ = NUL;}
        | formula IMP formula { $$ = NUL;}
