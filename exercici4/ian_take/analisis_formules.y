@@ -43,7 +43,6 @@
 
 input: %empty
      | input formula NEWLINE
-     | error NEWLINE { yyerrok; }
      ;
 
 formula: atomic_formula
@@ -54,6 +53,7 @@ formula: atomic_formula
        | formula DISJ formula
        | formula IMP formula
        | formula DIMP formula
+       | error { yyerrok;}
        ;
 
 atomic_formula: PRED '(' terms ')'
