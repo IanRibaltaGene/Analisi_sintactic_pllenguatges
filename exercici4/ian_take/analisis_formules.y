@@ -43,7 +43,7 @@
 
 input: { $$ = NUL; }
      | input formula NEWLINE { $$ = NUL;}
-     | error NEWLINE { $$ = NUL;}
+     | error NEWLINE { yyerrok;}
      ;
 
 formula: atomic_formula { $$ = NUL;}
