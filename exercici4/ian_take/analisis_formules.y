@@ -35,7 +35,7 @@
 %right FORALL EXISTS
 %right NEG
 
-%type <sense> program input formula atomic_formula quantified_formula terms term fbf
+%type <sense> program input fbf formula atomic_formula quantified_formula terms term
 
 %%
 
@@ -54,7 +54,7 @@ fbf: NEWLINE { $$ = NUL;}
    ;
 
 formula: atomic_formula { $$ = NUL;}
-       | NEG formula { $$ = NUL;}
+       | NEG formula %prec NEG { $$ = NUL;}
        | quantified_formula { $$ = NUL;}
        | '(' formula ')' %prec FORALL { $$ = NUL;}
        | formula CONJ formula { $$ = NUL;}
@@ -63,11 +63,11 @@ formula: atomic_formula { $$ = NUL;}
        | formula DIMP formula { $$ = NUL;}
        ;
 
-atomic_formula: PRED '(' terms ')' { $$ = NUL;}
+atomic_formula: PRED '(' terms ')' %prec PRED { $$ = NUL;}
               ;
 
 quantified_formula: FORALL VAR formula { $$ = NUL;}
-                  | EXISTS VAR formula { $$ = NUL;}
+                  | EXISTS VAR formula %prec FORALL { $$ = NUL;}
                   ;
 
 terms: { $$ = NUL;}
