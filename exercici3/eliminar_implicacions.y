@@ -50,7 +50,7 @@ formulas: formula                 { $$=NUL; }
 formula : ';'                   {$$ = NUL;}
         | clause ';'            { printf("Formula without implications and iff: %s\n", $1);
                                 $$ = NUL; }
-        | error FIN             { yyerrok; }
+        //| error FIN             { yyerrok; }
         ;
 
 clause  : expr                  { strcpy($$, $1); }
