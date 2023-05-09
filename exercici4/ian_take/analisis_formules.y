@@ -22,8 +22,10 @@
     extern int yyparse();
 %}
 
+%start input
+
 %union {
-    char *val;
+    char val;
     void *sense;
 }
 
@@ -37,8 +39,6 @@
 %left CONJ
 %left DISJ
 %left IMP DIMP
-
-%start input
 
 %type <sense> input formula atomic_formula quantified_formula terms term
 
