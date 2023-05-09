@@ -2,7 +2,7 @@ CC = gcc
 LEX = flex
 YACC = bison
 TARGET = analisis_formules
-CFLAGS = -Wall
+CFLAGS = -Wall -Wcounterexamples
 
 $(TARGET) : $(TARGET).tab.c  lex.yy.c
 	gcc $(CFLAGS) $(TARGET).tab.c lex.yy.c -o $(TARGET)

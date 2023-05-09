@@ -9,7 +9,7 @@
     #include <string.h>
 
     #define NUL 0
-    
+
     extern FILE * yyin;
 
     extern int line_number;
@@ -43,6 +43,7 @@
 
 input: { $$ = NUL; }
      | input formula NEWLINE { $$ = NUL;}
+     | error NEWLINE { $$ = NUL;}
      ;
 
 formula: atomic_formula { $$ = NUL;}
