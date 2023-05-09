@@ -48,7 +48,7 @@ formulas: formula              { $$=NUL; }
         ;
 
 formula : ';'                   {$$ = NUL;}
-        | clause ';' FIN        { printf("Formula without implications and iff: %s\n", $1);
+        | clause ';'        { printf("Formula without implications and iff: %s\n", $1);
                                 $$ = NUL; }
         | error FIN             { yyerrok; }
         ;
