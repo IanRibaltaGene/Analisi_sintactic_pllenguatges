@@ -46,7 +46,8 @@ program: { $$ = NUL;}
        ;
 
 input: input formula NEWLINE { $$ = NUL;}
-     | error NEWLINE { yyerrok;}
+     | error NEWLINE { yyerrok;
+                    $$ = NUL;}
      ;
 
 formula: atomic_formula { $$ = NUL;}
