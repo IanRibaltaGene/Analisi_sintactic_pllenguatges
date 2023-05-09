@@ -14,9 +14,6 @@
 %option noyywrap
 %x COMMENT
 
-separador ","
-variable [x-z][1-9]
-constant [a-c][1-9]
 %%
 
 [ \t]+                  /* ignorar espais blancs i tabs */ 
@@ -27,12 +24,12 @@ constant [a-c][1-9]
 				BEGIN 0; }
 <COMMENT>.
 
-{variable}              { return VAR;    } /* match variable */
-{constant}		{ return CONS;	 } /* match constant */
+[x-z][1-9]              { return VAR;    } /* match variable */
+[a-c][1-9]		{ return CONS;	 } /* match constant */
 [P-T][1-9]		{ return PRED;   } /* match predicats */
 [f-g][1-9]		{ return FUNC;	 } /* match funcions */
 
-\!                      { return NEG;    } /* match negat */
+"!"                     { return NEG;    } /* match negat */
 "^"                    { return CONJ;   } /* match conj */
 "v"                    { return DISJ;   } /* match disj */
 "->"                    { return IMP;    } /* match imp */
@@ -43,7 +40,7 @@ constant [a-c][1-9]
 
 "("                      { return yytext[0];    } /* match parentesis esquerra */ 
 ")"                      { return yytext[0];    } /* match parentesis dreta */
-{separador}				{ return yytext[0];    } /* match separator */
+","             		 { return yytext[0];    } /* match separator */
 
 \n                      { line_number++;
 						return NEWLINE; } /* match newline, incrementa line_number i retorna separador de clausules */

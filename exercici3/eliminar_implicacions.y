@@ -47,8 +47,7 @@ formula : ';'                   {$$ = NUL;}
         | ';' FIN               {$$ = NUL;}
         | clause ';' FIN        { printf("Formula without implications and iff: %s\n", $1);
                                 $$ = NUL; }
-        | error FIN             { fprintf(stderr,"ERROR EXPRESSIO INCORRECTA Línea %d \n", nlin);
-                                yyerrok; }
+        | error FIN             { yyerrok; }
         ;
 
 clause  : expr                  { strcpy($$, $1); }
@@ -96,7 +95,7 @@ expr    : VAR                   { c = $1+'A';
 
 %%
 void yyerror(const char *s) {
-    fprintf(stderr, "Error in line %d: %s\n", nlin, s);
+    fprintf(stderr, "Error a la línea %d: %s\n", nlin, s);
 }
 
 int main(int argc, char **argv) {
