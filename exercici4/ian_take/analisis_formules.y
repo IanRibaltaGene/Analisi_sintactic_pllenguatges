@@ -42,7 +42,6 @@
 %%
 
 input: %empty
-     | NEWLINE
      | input formula NEWLINE
      | input NEWLINE
      ;
