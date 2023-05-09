@@ -24,6 +24,7 @@
 
 %union {
     char *val;
+    int num;
 }
 
 %token <val> VAR CONS PRED FUNC
@@ -39,10 +40,12 @@
 
 %start input
 
+%type <num> input
+
 %%
 
-input: %empty
-     | input formula NEWLINE
+input: { $$ = NUL; }
+     | input formula NEWLINE { $$ = NUL;}
      ;
 
 formula: atomic_formula
@@ -53,7 +56,6 @@ formula: atomic_formula
        | formula DISJ formula
        | formula IMP formula
        | formula DIMP formula
-       | error { yyerrok;}
        ;
 
 atomic_formula: PRED '(' terms ')'
@@ -63,7 +65,7 @@ quantified_formula: FORALL VAR formula
                   | EXISTS VAR formula
                   ;
 
-terms: %empty
+terms: {}
      | term
      | terms ',' term
      ;
