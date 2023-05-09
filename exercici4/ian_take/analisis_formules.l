@@ -2,16 +2,17 @@
         /*               ESPECIFICACIO LEX               */
         /*************************************************/
 
-%array
-%option nounput
-%option noinput
-%option noyywrap
-%x COMMENT
 
 %{
 	#include "analisis_formula.tab.h"
 	int line_number=1;
 %}
+
+%array
+%option nounput
+%option noinput
+%option noyywrap
+%x COMMENT
 
 separador ","
 variable [x-z][1-9]
