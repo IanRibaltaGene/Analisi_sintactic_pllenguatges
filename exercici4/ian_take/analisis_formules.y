@@ -37,7 +37,7 @@
 %left DISJ
 %left IMP DIMP
 
-%type <sense> program input formula atomic_formula quantified_formula terms term form
+%type <sense> program input formula atomic_formula quantified_formula terms term
 
 %%
 
@@ -45,17 +45,12 @@ program: { $$ = NUL;}
        | input { $$ = NUL;}
        ;
 
-input: input form NEWLINE { $$ = NUL;}
+input: input formula NEWLINE { $$ = NUL;}
      | error NEWLINE { yyerrok;
                     $$ = NUL;}
      ;
 
-form: NEWLINE { $$ = NUL;}
-    | formula { $$ = NUL;}
-    ;
-
-formula: NEWLINE { $$ = NUL;}
-       | atomic_formula { $$ = NUL;}
+formula: atomic_formula { $$ = NUL;}
        | NEG formula { $$ = NUL;}
        | quantified_formula { $$ = NUL;}
        | '(' formula ')' { $$ = NUL;}
