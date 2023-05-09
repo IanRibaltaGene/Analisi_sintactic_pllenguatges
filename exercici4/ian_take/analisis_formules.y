@@ -66,8 +66,8 @@ formula: atomic_formula { $$ = NUL;}
 atomic_formula: PRED '(' terms ')' { $$ = NUL;}
               ;
 
-quantified_formula: FORALL VAR formula { $$ = NUL;}
-                  | EXISTS VAR formula %prec FORALL { $$ = NUL;}
+quantified_formula: FORALL VAR formula %prec FORALL { $$ = NUL;}
+                  | EXISTS VAR formula { $$ = NUL;}
                   ;
 
 terms: { $$ = NUL;}
