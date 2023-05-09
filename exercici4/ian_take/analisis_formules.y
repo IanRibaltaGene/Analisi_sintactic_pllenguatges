@@ -24,7 +24,7 @@
 
 %union {
     char *val;
-    int num;
+    void* sense;
 }
 
 %token <val> VAR CONS PRED FUNC
@@ -40,7 +40,7 @@
 
 %start input
 
-%type <num> input
+%type <sense> input
 
 %%
 
