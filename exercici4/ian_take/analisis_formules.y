@@ -57,7 +57,7 @@ fbf: NEWLINE { $$ = NUL;}
    ;
 
 formula: atomic_formula { $$ = NUL;}
-       | NEG formula { $$ = NUL;}
+       | NEG formula %prec NEG { $$ = NUL;}
        | quantified_formula { $$ = NUL;}
        | '(' formula ')' { $$ = NUL;}
        | formula CONJ formula { $$ = NUL;}
