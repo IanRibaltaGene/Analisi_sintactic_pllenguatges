@@ -5,7 +5,7 @@
 %{
     #include <stdio.h>
     #include <stdlib.h>
-    #include<ctype.h>
+    #include <ctype.h>
     #include <string.h>
 
     #define NUL 0
@@ -24,7 +24,7 @@
 
 %union {
     char *val;
-    void* sense;
+    void *sense;
 }
 
 %token <val> VAR CONS PRED FUNC
@@ -40,7 +40,7 @@
 
 %start input
 
-%type <sense> input
+%type <sense> input formula atomic_formula quantified_formula terms term
 
 %%
 
