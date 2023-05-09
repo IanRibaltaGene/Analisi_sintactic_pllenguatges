@@ -4,7 +4,7 @@
 
 
 %{
-	#include "analisis_formula.tab.h"
+	#include "analisis_formules.tab.h"
 	int line_number=1;
 %}
 
