@@ -27,10 +27,7 @@
 }
 
 %token <val> VAR CONS PRED FUNC
-%token NEG CONJ DISJ IMP DIMP
-%token FORALL EXISTS
-
-%nonassoc NEWLINE
+%token NEWLINE
 
 %left IMP DIMP
 %left DISJ
