@@ -45,7 +45,7 @@ program: { $$ = NUL;}
        | input { $$ = NUL;}
        ;
 
-input: input formula NEWLINE { $$ = NUL;}
+input: input form NEWLINE { $$ = NUL;}
      | error NEWLINE { yyerrok;
                     $$ = NUL;}
      ;
