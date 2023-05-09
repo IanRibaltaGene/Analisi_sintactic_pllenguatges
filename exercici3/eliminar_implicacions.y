@@ -49,7 +49,7 @@ formulas: formula                 { $$=NUL; }
 
 formula : clause ';'            { printf("Formula without implications and iff: %s\n", $1);
                                 $$ = NUL; }
-        | error ';'                { yyerrok;
+        | error FIN                { yyerrok;
                                     $$ = NUL; }
         ;
 
