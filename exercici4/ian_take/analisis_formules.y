@@ -9,10 +9,7 @@
     #include <string.h>
 
     #define NUL 0
-
-    #define YYSTYPE char*
-    #define MAX_LINE_LENGTH 1000
-
+    
     extern FILE * yyin;
 
     extern int line_number;
