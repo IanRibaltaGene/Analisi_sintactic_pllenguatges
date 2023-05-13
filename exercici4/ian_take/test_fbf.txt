@@ -3,7 +3,8 @@
 
 forAll x1 forAll x2 (P1(x1,x2) -> P2(x2))
 
-(P1(x1,x2) -> P2(x2)) ^ (P1(x1,x2) -> P2(x2)) // Hauria de ser correcte? preguntar
+//vvvvv Hauria de ser correcte? preguntar vvvvvv Es vol que els comentaris puguin estar a la mateixa linia que el codi? 
+(P1(x1,x2) -> P2(x2)) ^ (P1(x1,x2) -> P2(x2)) 
 forAll x1 forAll x2 (P1(x1,x2) -> P2(x2))
 forAll x1 (P1(x1,x2) <-> (exists x2 P2(x2) ^ P3(x1,x2) v !P2(f1(x1,x2))))
 
