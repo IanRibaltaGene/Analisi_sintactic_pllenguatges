@@ -57,10 +57,10 @@ formula: atomic_formula { $$ = NUL;}
        | NEG formula { $$ = NUL;}
        | quantified_formula { $$ = NUL;}
        | '(' formula ')' { $$ = NUL;}
-       | formula CONJ formula { $$ = NUL;}
-       | formula DISJ formula { $$ = NUL;}
-       | formula IMP formula { $$ = NUL;}
-       | formula DIMP formula { $$ = NUL;}
+       | formula CONJ formula %prec CONJ{ $$ = NUL;}
+       | formula DISJ formula %prec DISJ{ $$ = NUL;}
+       | formula IMP formula %prec IMP{ $$ = NUL;}
+       | formula DIMP formula %prec DIMP{ $$ = NUL;}
        ;
 
 atomic_formula: PRED '(' terms ')' { $$ = NUL;}
