@@ -29,13 +29,14 @@
 %token <val> VAR CONS PRED FUNC
 %token NEWLINE
 
+%type <sense> program input fbf formula atomic_formula quantified_formula terms term
+
 %left IMP DIMP
 %left DISJ
 %left CONJ
 %right FORALL EXISTS
 %right NEG
 
-%type <sense> program input fbf formula atomic_formula quantified_formula terms term
 
 %%
 
@@ -57,10 +58,10 @@ formula: atomic_formula { $$ = NUL;}
        | NEG formula { $$ = NUL;}
        | quantified_formula { $$ = NUL;}
        | '(' formula ')' { $$ = NUL;}
-       | formula CONJ formula %prec CONJ{ $$ = NUL;}
-       | formula DISJ formula %prec DISJ{ $$ = NUL;}
-       | formula IMP formula %prec IMP{ $$ = NUL;}
-       | formula DIMP formula %prec DIMP{ $$ = NUL;}
+       | formula CONJ formula { $$ = NUL;}
+       | formula DISJ formula { $$ = NUL;}
+       | formula IMP formula { $$ = NUL;}
+       | formula DIMP formula { $$ = NUL;}
        ;
 
 atomic_formula: PRED '(' terms ')' { $$ = NUL;}
