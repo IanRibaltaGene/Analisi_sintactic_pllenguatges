@@ -10,13 +10,12 @@
 
     #define NUL 0
 
+    extern int line_number;
+    extern int yylex();
     extern FILE * yyin;
 
-    extern int line_number;
-
     void yyerror(const char *s);
-    extern int yylex();
-    extern int yyparse();
+    // extern int yyparse();
 %}
 
 %start program

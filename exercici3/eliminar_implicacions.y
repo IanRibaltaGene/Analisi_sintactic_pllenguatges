@@ -100,7 +100,7 @@ expr    : VAR                   { c = $1+'A';
 
 %%
 void yyerror(const char *s) {
-    fprintf(stderr, "Error a la línea %d: %s\n", nlin, s);
+    fprintf(stderr, "Error a la línia %d: %s\n", nlin, s);
 }
 
 int main(int argc, char **argv) {
