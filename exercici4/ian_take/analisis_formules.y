@@ -48,14 +48,14 @@ input: fbf { $$ = NUL;}
      | input fbf { $$ = NUL;}
      ;
 
-fbf: formula NEWLINE { $$ = NUL; fprintf(stdout, "Línia %d: Formula fbf correcta\n", line_number);}
+fbf: formula NEWLINE { $$ = NUL; fprintf(stdout, "Línia %d: Formula fbf correcta\n", line_number-1);}
    | NEWLINE { $$ = NUL;}
    | error NEWLINE { yyerrok;
                     $$ = NUL;}
    ;
 
 formula: atomic_formula { $$ = NUL;}
-       | NEG formula { $$ = NUL;}
+       | NEG formula %prec NEG { $$ = NUL;}
        | quantified_formula { $$ = NUL;}
        | '(' formula ')' { $$ = NUL;}
        | formula CONJ formula { $$ = NUL;}

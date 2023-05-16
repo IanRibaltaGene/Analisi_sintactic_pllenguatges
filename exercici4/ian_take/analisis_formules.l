@@ -22,7 +22,7 @@
 "//"			{ BEGIN COMMENT; }
 <COMMENT>\n		{ line_number++; /*retornar NEWLINE al sintactis? */
 				BEGIN 0; }
-<COMMENT>.
+<COMMENT>. ;
 
 [x-z][1-9]              { return VAR;    } /* match variable */
 [a-c][1-9]		{ return CONS;	 } /* match constant */
