@@ -2,20 +2,19 @@
         /*               ESPECIFICACIO LEX               */
         /*************************************************/
 
-%{
-	#include "calcul_conunts.tab.h"
-	int nlin=1;
-%}
-
 %array
 %option nounput
 %option noinput
 %option noyywrap
 %x COMMENT
+%{
+	#include "calcul_conjunts.tab.h"
+	int nlin=1;
+%}
+
 
 %%
-
-[ \t]+                  /* ignorar espais blancs i tabs */ 
+[ \t]+        ;        /* ignorar tabs */ 
 
 	/* Comentaris, incrementa line_number */
 "//"				{ BEGIN COMMENT; }
@@ -23,9 +22,9 @@
 			    BEGIN 0; }
 <COMMENT>. ;
 
-[A-Z]                   { yylval.var = yytext[0]-'A';
+[A-Z]                   { yylval.var = yytext[0] -'A';
 						return CONST;    } /* match constructor */
-[a-z]                   { yylval.var = yytext[0]-'a';
+[a-z]                   { yylval.var = yytext[0] - 'a';
 						return TERM;    } /* match terminals */
 ":"                     { return PROD;    } /* match producció */
 "|"                     { return ALTER;   } /* match alternativa */
