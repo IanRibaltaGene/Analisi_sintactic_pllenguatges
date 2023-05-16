@@ -48,7 +48,7 @@ input: fbf { $$ = NUL;}
      | input fbf { $$ = NUL;}
      ;
 
-fbf: formula NEWLINE { $$ = NUL; fprintf(stdout, "Formula fbf correcta\n");}
+fbf: formula NEWLINE { $$ = NUL; fprintf(stdout, "Línia %d: Formula fbf correcta\n", line_number);}
    | NEWLINE { $$ = NUL;}
    | error NEWLINE { yyerrok;
                     $$ = NUL;}
@@ -85,7 +85,7 @@ term: VAR { $$ = NUL;}
 %%
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Error a la linea %d: %s\n", line_number, s);
+    fprintf(stderr, "Error a la línia %d: %s\n", line_number, s);
 }
 
 int main(int argc, char **argv) {

@@ -20,7 +20,7 @@
 
 	/* Comentaris, incrementa line_number */
 "//"			{ BEGIN COMMENT; }
-<COMMENT>\n		{ line_number++; 
+<COMMENT>\n		{ line_number++; /*retornar NEWLINE al sintactis? */
 				BEGIN 0; }
 <COMMENT>.
 
