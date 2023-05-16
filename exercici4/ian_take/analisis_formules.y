@@ -56,7 +56,8 @@ fbf: formula NEWLINE { $$ = NUL; fprintf(stdout, "Línia %d: Formula fbf correct
 
 formula: atomic_formula { $$ = NUL;}
        | NEG formula { $$ = NUL;}
-       | quantified_formula { $$ = NUL;}
+       | FORALL VAR formula %prec FORALL { $$ = NUL;}
+        | EXISTS VAR formula { $$ = NUL;}
        | '(' formula ')' { $$ = NUL;}
        | formula CONJ formula { $$ = NUL;}
        | formula DISJ formula { $$ = NUL;}
